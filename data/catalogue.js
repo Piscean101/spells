@@ -5,6 +5,7 @@ import { effectCatalogue } from './effect.js';
 let Blizzard = new AoE(3,'Blizzard','Ice',80,300,null,3);
 let ChainsawMassacre = new AoE(7,'Chainsaw Massacre','Steel',80,450,[[effectCatalogue.RemoveWard,[2]]]);
 let WarCry = new AoE(3,'War Cry','Fire',75,0,[[effectCatalogue.Charm,['War Cry',300,'Damage',true]]]);
+let Splendor = new AoE(3,'Splendor','Light',90,0,[[effectCatalogue.Heal,[420]]]);
 // OVER-TIMES
 let BrainFreeze = new Attack(5,'Brain Freeze','Ice',75,585,[[effectCatalogue.Stun,[2]]],3);
 let Flamethrower = new Attack(5,'Flamethrower','Fire',75,835,null,3);
@@ -19,13 +20,14 @@ let Fury = new Instant(0,'Fury','Fire',75,[[effectCatalogue.Charm,['Fury',100,'D
 let Freeze = new Instant(2,'Freeze','Ice',80,[[effectCatalogue.Stun,[2]]]);
 let Hibernate = new Instant(3,'Hibernate','Ice',80,[[effectCatalogue.Stun,[1]],[effectCatalogue.DestroyMana,[3]]]);
 let Indestructible = new Instant(2,'Indestructible','Steel',80,[[effectCatalogue.Indestructible,['Ward']]]);
-let MiracleSentinel = new Instant(4,'Miracle Sentinel','Steel',80,[[effectCatalogue.Heal,[450]],[effectCatalogue.Indestructible,['Ward']]]);
 let Invoke = new Instant(3,'Invoke','Dark',85,[[effectCatalogue.RemoveWardAll]]);
+let MiracleSentinel = new Instant(4,'Miracle Sentinel','Steel',80,[[effectCatalogue.Heal,[450]],[effectCatalogue.Indestructible,['Ward']]]);
 let Paranoia = new Instant(3,'Paranoia','Dark',85,[[effectCatalogue.Charm,['Paranoia',-1000,'Damage']]]);
 let Pinpoint = new Instant(0,'Pintpoint','Steel',100,[[effectCatalogue.Ward,['Pinpoint',-75,'Damage']]]);
 let Shred = new Instant(2,'Shred','Steel',100,[[effectCatalogue.RemoveWard,[2]]]);
 let Stun = new Instant(0,'Stun','Ice',100,[[effectCatalogue.Stun,[1]]]);
 let StunBlock = new Instant(0,'Stun Block','Ice',100,[[effectCatalogue.Protect,['Stun Block','Stun']]]);
+// HEALS
 
 
 export let spellCatalogue = {
@@ -49,7 +51,8 @@ export let spellCatalogue = {
         StunBlock
     ],
     Light: [
-        Absorb
+        Absorb,
+        Splendor
     ],
     Steel: [
         ChainsawMassacre,
@@ -109,34 +112,5 @@ export let spellCatalogue = {
     }
 
 };
-
-// export function checkCatalogue(element=null) {
-
-//     let [total,catalogue] = [0,Object.entries(spellCatalogue)];
-
-//     if(element) {
-
-//         let filter = catalogue.filter(e => { return e[0] == element })[0][1];
-
-//         console.log(filter);
-
-//         total = filter.length;
-
-//     } else {
-
-//         for (const element of catalogue) {
-    
-//             console.log(`${element[0].toUpperCase()} ${element[1].length}`,'\n',...element[1]);
-//             total += element[1].length;
-    
-//         }
-
-//     }
-
-//     console.log(`TOTAL ${total}`);
-
-// }
-
-// checkCatalogue();
 
 // spellCatalogue.checkCatalogue();

@@ -3,8 +3,10 @@ let AddMana = (target,n) => {
     let result = 0;
 
     while (result < n) {
+
         target.mana++;
         result++;
+
     }
 
     console.log(`Added ${result} mana to ${target.name}'s mana pool`);
@@ -16,12 +18,16 @@ let Charm = (target,name,n,type='Damage',p=false,i=false) => {
     let charms = target.hanging.charms;
 
     if (charms.length < 7) { 
+
         charms.push({ name: name , effect: n , type: type , permanent: p , indestructible: i });
         console.log(`Added ${name} {${type} ${n}} to ${target.name}`);
+
     }
 
     else { 
-        console.log('Charm limit reached!');     
+
+        console.log('Charm limit reached!');  
+
     }
     
     return charms;
@@ -90,11 +96,14 @@ let Indestructible = (target,type='Ward') => {
         type == 'Charm' ? enchantment = target.hanging.charms : null ;
 
         if (enchantment.length) {
+
             enchantment[enchantment.length-1].indestructible = true;
             console.log(`${target.name}'s ${type} is now Indestructible`);
+
         } else {
             
             console.log('No applicable target found for Indestructible');
+            
         }
 
 }

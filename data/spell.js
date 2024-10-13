@@ -1,4 +1,5 @@
 export class Spell {
+
     constructor(cost,title,element,accuracy,effect=null) {
         this.cost = cost
         this.title = title;
@@ -6,9 +7,11 @@ export class Spell {
         this.accuracy = accuracy;
         this.effect = effect;
     }
+
 }
 
 export class Attack extends Spell {
+
     constructor(cost,title,element,accuracy,power,effect,ot=0) {
         super(cost,title,element,accuracy,effect)
         this.power = power;
@@ -17,6 +20,7 @@ export class Attack extends Spell {
 }
 
 export class AoE extends Spell {
+
     constructor(cost,title,element,accurracy,power,effect,ot=0) {
         super(cost,title,element,accurracy,effect)
         this.power = power;
@@ -26,9 +30,19 @@ export class AoE extends Spell {
 
 }
 
+export class Heal extends Spell {
+
+    constructor(cost,title,element,accuracy,effect) {
+
+    }
+
+}
+
 export class Instant extends Spell {
+
     constructor(cost,title,element,accuracy,effect) {
         super(cost,title,element,accuracy,effect) 
     }
+
 }
 
