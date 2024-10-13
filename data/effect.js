@@ -1,3 +1,19 @@
+let overTime = (n,rounds,source='N/A',heal=false) => {
+
+    let result = [];
+
+    for (let i = 0; i < rounds; i++) {
+
+        heal ? result.push(Math.floor(-n/rounds)) : result.push(Math.floor(n/rounds));
+
+    }
+
+    return [result,source];
+
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 let AddMana = (target,n) => {
 
     let result = 0;
@@ -20,7 +36,7 @@ let Charm = (target,name,n,type='Damage',p=false,i=false) => {
     if (charms.length < 7) { 
 
         charms.push({ name: name , effect: n , type: type , permanent: p , indestructible: i });
-        console.log(`Added ${name} {${type} ${n}} to ${target.name}`);
+        console.log(`Added ${name} {${type} CHARM ${n}} to ${target.name}`);
 
     }
 
@@ -76,13 +92,25 @@ let DestroyMana = (target,n,siphon=false) => {
  
 }
 
-let Heal = (target,n) => {
+let Heal = (target,n,ot=false) => {
 
     let result;
 
-    n > 0 ? result = `Healed ${target.name} from ${target.hp} to ${target.hp + n} { +${n} }` : result = `Heal reduced to 0`;
+    if (n > 0 && ot) {
+
+        result = `${target.name} is recovering {${n}} health over ${ot} rounds`;
+        target.hanging.damage.push(overTime(n,ot,null,true));
     
-    target.hp += n;
+    } else if (n <= 0) {
+
+        result = `Heal reduced to 0`;
+
+    } else {
+        
+        result = `Healed ${target.name} from ${target.hp} to ${target.hp + n} { +${n} }`;
+        target.hp += n;
+
+    }
 
     console.log(result);
 
@@ -209,14 +237,14 @@ let Stun = (target,n) => {
 
 }
  
-let Ward = (target,name,n,type='Absorb',p=false,i=false) => {
+let Ward = (target,name,n,type='Damage',p=false,i=false) => {
 
     let wards = target.hanging.wards;
 
     if (wards.length < 7) { 
 
         wards.push({ name: name , effect: n , type: type , permanent: p , indestructible: i });
-        console.log(`Added ${name} {${type} ${n}} to ${target.name}`);
+        console.log(`Added ${name} {${type} WARD ${n}} to ${target.name}`);
 
     }
 
@@ -248,9 +276,6 @@ let isProtected = (e,type) => {
 
 
 
-
-
-
 export let effectCatalogue = {
     AddMana: AddMana,
     Charm: Charm,
@@ -265,42 +290,3 @@ export let effectCatalogue = {
     Stun: Stun,
     Ward: Ward
 }
-
-let tower = {
-    name: 'Deondre',
-    hp: 1000,
-    mana: 50,
-    hanging: {
-        charms: [],
-        damage: [],
-        protection: [],
-        stun: [],
-        wards: []
-    }
-}
-
-// Ward(tower,'Feint',5,'Trap',false,false);
-// Ward(tower,'Bulwark',500,'Absorb',false,true);
-// Ward(tower,'Bulwark',750,'Absorb',false,true);
-// Charm(tower,'Fury',100,'Damage',false,true);
-// Charm(tower,'Fury',100,'Damage',true,true);
-// Ward(tower,'Absorb',100,'Absorb',true,true);
-// Stun(tower,2);
-// Protect(tower,'Stun Block','Stun');
-// Stun(tower,1);
-// Stun(tower,1);
-// Protect(tower,'Stun Block','Stun');
-// Protect(tower,'Stun Block','Stun');
-// Stun(tower,2);
-// Protect(tower,'Stun Block','Damage');
-// console.log(...[tower.hanging]);
-// DestroyMana(tower,5);
-// AddMana(tower,3);
-// Protect(tower,'Mana Shield','Mana');
-// DestroyMana(tower,6000);
-// tower.hanging.protection.splice(0,1);
-// AddMana(tower,1);
-// console.log(tower);
-// console.log(isProtected(tower,'Mana'))
-
-// console.log(isProtected(tower,'Stun'))
