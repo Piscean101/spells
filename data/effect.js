@@ -29,14 +29,14 @@ let AddMana = (target,n) => {
 
 }
 
-let Charm = (target,name,n,type='Damage',p=false,i=false) => {
+let Charm = (target,name,n,type='Damage',p=false,i=false,used=false) => {
 
     let charms = target.hanging.charms;
 
     if (charms.length < 7) { 
 
-        charms.push({ name: name , effect: n , type: type , permanent: p , indestructible: i });
-        console.log(`Added ${name} {${type} CHARM ${n}} to ${target.name}`);
+        charms.push({ name: name , effect: n , type: type , enchant: 'Charm' , permanent: p , indestructible: i , used: used });
+        console.log(`Added ${name} { ${type} CHARM ${n > 0 ? `+${n}` : n} ${p ? 'PERM ' : [...([0 ? [] : []])]}} to ${target.name}`);
 
     }
 
@@ -50,7 +50,13 @@ let Charm = (target,name,n,type='Damage',p=false,i=false) => {
 
 }
 
-let Drain = (target,damage,rate) => {
+let Drain = (target,n,rate,result=0) => {
+
+    result = Math.floor(n * rate);
+
+    console.log(`Drained ${target.name} of {${n}} health and recovered {${result}}`);
+
+    return [n,result];
 
 }
 
@@ -82,7 +88,7 @@ let DestroyMana = (target,n,siphon=false) => {
 
         if (siphon) {
 
-            console.log(`${result} mana added to your mana pool`);
+            console.log(`${result} mana added to caster's mana pool`);
 
         }
 
@@ -107,9 +113,11 @@ let Heal = (target,n,ot=false) => {
 
     } else {
         
-        result = `Healed ${target.name} from ${target.hp} to ${target.hp + n} { +${n} }`;
-        target.hp += n;
+        result = `${target.name} recovered { ${n} } health`;
 
+        target.hp += n; 
+        
+        target.hp > target.maxhp ? target.hp = target.maxhp : null ;
     }
 
     console.log(result);
@@ -152,8 +160,6 @@ let RemoveCharm = (target,n=1) => {
 
     for (let i = charms.length-1 ; i >= 0 && count < n ; i--) {
 
-        console.log(isIndestructible(charms[i]))
-
         if (!isIndestructible(charms[i])) {
 
             console.log(`Removed ${charms[i].name} { ${charms[i].type} ${charms[i].effect} } `)
@@ -186,8 +192,6 @@ let RemoveWard = (target,n=1) => {
 
     for (let i = wards.length-1 ; i >= 0 && count < n ; i--) {
 
-        console.log(isIndestructible(wards[i]))
-
         if (!isIndestructible(wards[i])) {
 
             console.log(`Removed ${wards[i].name} { ${wards[i].type} ${wards[i].effect} } `);
@@ -215,6 +219,10 @@ let RemoveWardAll = (target) => {
     return wards;
 }
 
+let Sacrifice = (target,n,caster=null) => {
+
+}
+
 let Stun = (target,n) => {
 
     if (isProtected(target,'Stun').length) {
@@ -237,14 +245,14 @@ let Stun = (target,n) => {
 
 }
  
-let Ward = (target,name,n,type='Damage',p=false,i=false) => {
+let Ward = (target,name,n,type='Damage',p=false,i=false,used=false) => {
 
     let wards = target.hanging.wards;
 
     if (wards.length < 7) { 
 
-        wards.push({ name: name , effect: n , type: type , permanent: p , indestructible: i });
-        console.log(`Added ${name} {${type} WARD ${n}} to ${target.name}`);
+        wards.push({ name: name , effect: n , type: type , enchant: 'Ward' , permanent: p , indestructible: i , used: used });
+        console.log(`Added ${name} { ${type} WARD ${n > 0 ? `+${n}` : n} ${p ? 'PERM ' : [...([0 ? [] : []])]}} to ${target.name}`);
 
     }
 
@@ -280,6 +288,7 @@ export let effectCatalogue = {
     AddMana: AddMana,
     Charm: Charm,
     DestroyMana: DestroyMana,
+    Drain: Drain,
     Heal: Heal,
     Indestructible: Indestructible,
     Protect: Protect,

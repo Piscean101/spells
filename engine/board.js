@@ -1,4 +1,6 @@
-import { randomChoice } from "./math.js";
+// ATTACH QUEUE TO BOARD
+// IMPORT NAMES TO PLAYER AND DECLARE PLAYERS THERE 
+///// DIFFERENT GAME MODES VIA BOARD INIT
 
 export class Board {
 
@@ -14,10 +16,9 @@ export class Board {
 
         this.settings = {
                 
-            manaLevel: 1, manaGrowth: 1, round: 0,
+            manaLevel: 0, manaGrowth: 1, round: 0,
 
         }
-
 
         this.init = () => {
 
@@ -61,7 +62,7 @@ export class Board {
 
     }
 
-    endGame(result,winner=null) {
+    endGame(result=null,winner=null) {
 
         console.log('game over');
         
@@ -78,11 +79,25 @@ export class Board {
     
     nextRound(mana=this.settings.manaGrowth) {
 
+        this.upkeep(mana);
+
+        console.log('\n',`*************** ROUND ${this.settings.round} ***************`,'\n',...this.teams.roster);
+
+    }
+
+    upkeep(mana) {
+
+        for (const teammate of this.teams.roster) {
+
+            teammate.hanging.charms = teammate.hanging.charms.filter(e => { return e.used == false });
+            
+            teammate.hanging.wards = teammate.hanging.wards.filter(e => { return e.used == false });
+
+        }
+
         this.settings.round++;
 
         this.addManaAll(mana);
-
-        console.log('\n',`*************** ROUND ${this.settings.round} ***************`,'\n',...this.teams.roster);
 
     }
 

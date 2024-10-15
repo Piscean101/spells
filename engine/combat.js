@@ -1,13 +1,79 @@
-import { spellCatalogue } from "../data/catalogue.js";
-import { effectCatalogue } from "../data/effect.js";
+export let queue = {
 
-function checkMana(caster,spell) {
+    queue: [],
+
+    dequeue(q = this.queue) {
+
+        q.sort((a,b) => { return b[0] - a[0] });
+            
+            q.forEach(e => {
+
+                if (e[1].hp > 0) {
+
+                    e[1].action(e[2],e[3]);
+                    
+                } 
+
+                e[2].hp < 0 ? console.log(`\n ${e[2].name} was defeated`) : null ;
+                
+            });
+
+        this.queue = [];
+
+    }
+
+}
+
+export function checkMana(caster,spell) {
 
     return caster.mana >= spell.cost ? true : false;
 
 }
 
-function damageRoll(n) {
+export function applyBuffs(n,target,type=['Heal'],position='Out') {
+
+    let targetbuffs; let result = [];
+
+    position == 'Out' ? targetbuffs = target.hanging.charms : targetbuffs = target.hanging.wards;
+    
+    targetbuffs.forEach(e => {
+
+        let count = 0;
+
+            count++;
+
+            if (type.includes(e.type)) {
+    
+                n += e.effect;
+    
+                if(!e.indestructible && !e.permanent) {
+    
+                    e.used = true;
+    
+                }
+
+                e.effect > 0 ? result.push(`${type[0]} boosted {${e.name}} {+${e.effect}}`) : 
+                result.push(`${type[0]} reduced {${e.name}} {${e.effect}}`);
+    
+            }
+
+    });
+
+    return [n,result];
+
+}
+
+export function checkBuffs(target,position='Out',type='Damage') {
+
+    let targetbuffs;
+
+    position == 'Out' ? targetbuffs = target.hanging.charms : targetbuffs = target.hanging.wards;
+
+    return targetbuffs;
+
+}
+
+export function damageRoll(n) {
 
     let roll = Math.floor(Math.random()*n); return roll;
 
@@ -26,80 +92,3 @@ export function overTime(n,rounds,source='N/A',heal=false) {
     return [result,source];
 
 }
-
-export function randomSpell() {
-
-
-
-
-}
-
-export function damageCalculator(caster,target,spell) {
-
-    ///CHECK FOR BUFFS DEBUFFS <----------------------------------------------------------
-
-    let result = false;
-
-    if (checkMana(caster,spell)) {
-
-        let outgoing = spell.power + damageRoll(25);
-
-        if (spell.aoe) {
-    
-            console.log(`${caster.name} cast ${spell.title}!`);
-    
-            let [singletarget,team,temp] = [spell,target,spell.cost];
-            [singletarget.aoe,singletarget.cost] = [null,0];
-    
-            for (const player of team) {
-    
-                caster.castSpell(player,singletarget);
-    
-            }
-
-            [singletarget.aoe,singletarget.cost] = [true,temp];
-    
-        } else {
-
-            spell.aoe === null ? null : console.log(`${caster.name} cast ${spell.title}!`)
-    
-            if (spell.effect) {
-    
-                spell.effect.forEach(e => {
-    
-                    if (e[0] == effectCatalogue.DestroyMana && e[1][1] == 'mana') {
-    
-                        caster.mana += e[0](target,...e[1]);
-    
-                    } else {
-    
-                        e[0](target,...e[1]);
-    
-                    }
-    
-                })
-    
-            }
-            
-            if (spell.ot && spell.power) {
-    
-                console.log(`${target.name} is afflicted by ${spell.title} damage {${spell.power}} over ${spell.ot} rounds`);
-                target.hanging.damage.push(overTime(spell.power,spell.ot,spell.title));
-    
-            } else if (!spell.ot && spell.power && !spell.aoe) {
-    
-                console.log(`${target.name} took { ${outgoing} } points of damage!`);
-                target.hp -= outgoing;
-    
-            } 
-            
-        }
-
-        result = true;
-
-    } else { console.log("Insufficient Mana") }
-
-    return result;
-
-};
-
