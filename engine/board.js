@@ -87,11 +87,25 @@ export class Board {
 
     upkeep(mana) {
 
-        for (const teammate of this.teams.roster) {
+        let n;
 
-            teammate.hanging.charms = teammate.hanging.charms.filter(e => { return e.used == false });
+        for (const tm of this.teams.roster) {
+
+            tm.hanging.charms = tm.hanging.charms.filter(e => { return e.used == false });
             
-            teammate.hanging.wards = teammate.hanging.wards.filter(e => { return e.used == false });
+            tm.hanging.wards = tm.hanging.wards.filter(e => { return e.used == false });
+
+            tm.hanging.protection = tm.hanging.protection.filter(e => { return e.used == false });
+
+            tm.hanging.damage.forEach(e => {
+
+                n = e[0].shift();
+
+                tm.hp += n;
+
+                n > 0 ? console.log(`${tm.name} Restored {${n}} health`) : console.log(`${tm.name} Damaged by { ${e[1]} } {${-n}}`)
+
+            })
 
         }
 

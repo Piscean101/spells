@@ -104,7 +104,9 @@ var maxArea = function(height) {
 // console.log([6,7,8,9,3].indexOf(7))
 
 export function randomChoice(...args) {
+
     return args[Math.floor(Math.random()*args.length)];
+    
 }
 
 export function randomNumber(max,...exclusions) {

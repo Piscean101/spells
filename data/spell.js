@@ -41,15 +41,6 @@ export class AoE extends Spell {
 
 }
 
-export class Sacrifice extends Spell {
-
-    constructor(cost,title,element,accuracy,effect) {
-
-
-    }
-
-}
-
 export class Instant extends Spell {
 
     constructor(cost,title,element,accuracy,effect) {

@@ -14,7 +14,7 @@ let overTime = (n,rounds,source='N/A',heal=false) => {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-let AddMana = (target,n) => {
+let AddMana = (target,n=1) => {
 
     let result = 0;
 
@@ -25,7 +25,7 @@ let AddMana = (target,n) => {
 
     }
 
-    console.log(`Added ${result} mana to ${target.name}'s mana pool`);
+    console.log(`Added {${result}} mana to ${target.name}'s mana pool`);
 
 }
 
@@ -60,7 +60,7 @@ let Drain = (target,n,rate,result=0) => {
 
 }
 
-let DestroyMana = (target,n,siphon=false) => {
+let DestroyMana = (target,n=1,siphon=false) => {
 
     let result = 0;
 
@@ -84,7 +84,7 @@ let DestroyMana = (target,n,siphon=false) => {
     
         }
     
-        console.log(`Destroyed ${result} mana in ${target.name}'s mana pool`);
+        console.log(`Destroyed ${result} mana in ${target.name}'s mana pool { ${target.mana} }`);
 
         if (siphon) {
 
@@ -105,7 +105,7 @@ let Heal = (target,n,ot=false) => {
     if (n > 0 && ot) {
 
         result = `${target.name} is recovering {${n}} health over ${ot} rounds`;
-        target.hanging.damage.push(overTime(n,ot,null,true));
+        target.hanging.damage.push(overTime(-n,ot,null,true));
     
     } else if (n <= 0) {
 
@@ -229,6 +229,7 @@ let Stun = (target,n) => {
 
         console.log('Stun Blocked!');
         isProtected(target,'Stun').splice(0,1);
+        target.hanging.protection[0].used = true;
 
     } else {
 

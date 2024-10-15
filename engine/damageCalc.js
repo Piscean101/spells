@@ -25,7 +25,9 @@ export function damageCalculator(caster,target,spell) {
         
         } 
 
-        let outgoing = applyBuffs(spell.power,caster,spell.types)[0] + damageRoll(25); 
+        let outgoing; let healOut;
+        
+        spell.power ? outgoing = applyBuffs(spell.power,caster,spell.types)[0] + damageRoll(25) : null;
 
         outgoing <= 0 ? outgoing = 0 : null;
 
@@ -48,9 +50,9 @@ export function damageCalculator(caster,target,spell) {
 
             if (spell.ot && spell.power) {
     
-                console.log(`${target.name} is afflicted by ${spell.title} damage {${spell.power}} over ${spell.ot} rounds`);
+                console.log(`${target.name} is afflicted by ${spell.title} damage {${outgoing}} over ${spell.ot} rounds`);
 
-                target.hanging.damage.push(overTime(spell.power,spell.ot,spell.title));
+                target.hanging.damage.push(overTime(outgoing,spell.ot,spell.title));
     
             } else if (!spell.ot && spell.power != 'Drain' && spell.power) {
     
@@ -58,8 +60,8 @@ export function damageCalculator(caster,target,spell) {
                 
                 target.hp -= outgoing;
     
-            }
-    
+            } 
+
             if (spell.effect) {
     
                 spell.effect.forEach(e => {
@@ -78,9 +80,9 @@ export function damageCalculator(caster,target,spell) {
 
                             caster.hp > caster.maxhp ? caster.hp = caster.maxhp : null;
 
-                        } else if (e[0] == effectCatalogue.Heal) {
+                        } else if (e[0] == effectCatalogue.Heal && !spell.ot) {
 
-                            let healOut = applyBuffs(...e[1],caster,spell.types)[0];
+                            healOut = applyBuffs(...e[1],caster,spell.types)[0];
 
                             healOut <= 0 ? healOut = 0 : null;
 
