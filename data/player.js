@@ -7,7 +7,7 @@ import { boyName , girlName , lastName , RandomName } from "./name.js";
 
 class Player {
     constructor(name,element,hp = 1500,mana=0) {
-        this.name = name; this.hp = hp; this.mana = mana; this.speed = 0; this.maxhp = hp;
+        this.name = name; this.hp = hp; this.mana = mana; this.speed = 0; this.maxhp = hp; this.mates = [];
         this.hanging = {
             charms: [], damage: [], protection: [], stun: [], wards: []
         }
@@ -53,14 +53,16 @@ let p6 = new Player(RandomName());
 let team1 = {
     p1,
     p2,
+    p3,
 }
 
 let team2 = {
-    p3,
-    p4,
+    p6,
+    p5,
+    p4
 }
 
-let board1 = new Board(4,1,...Object.values(team1),...Object.values(team2));
+let board1 = new Board(4,3,...Object.values(team1),...Object.values(team2));
 let t1 = board1.teams.team1; let t2 = board1.teams.team2;
 
 export { Player , board1 , t1 , t2 , p1 , p2 , p3 , p4 , p5 , p6 }

@@ -46,6 +46,18 @@ export class Board {
 
             this.teams.roster.forEach(e => { e.mana = this.settings.manaLevel });
 
+            for (const t of Object.values(this.teams).splice(0,2)) {
+
+                console.log(t);
+
+                for (const p of t) {
+
+                    p.mates.push(...t.filter(e => { return e != p }));
+
+                }
+
+            }
+
         };
 
         this.init();

@@ -11,11 +11,12 @@ const queue1 = document.getElementById('queue');
 const nextRound = document.getElementById('nextRound');
 
 queue1.addEventListener("click", (e) => {
-    p1.cast('Hellraise',t2);
-    p1.cast(spellCatalogue.pickRandom(),p2); 
-    p2.cast(spellCatalogue.pickRandom(),p3);
-    p3.cast(spellCatalogue.pickRandom(),p4);
+    p1.cast(spellCatalogue.pickRandom(),p4); 
+    p2.cast(spellCatalogue.pickRandom(),p5);
+    p3.cast(spellCatalogue.pickRandom(),p6);
     p4.cast(spellCatalogue.pickRandom(),p1);
+    p5.cast(spellCatalogue.pickRandom(),p2);
+    p6.cast(spellCatalogue.pickRandom(),p3)
 });
 cast.addEventListener("click", (e) => {
     return queue.dequeue();

@@ -29,18 +29,18 @@ export function damageCalculator(caster,target,spell) {
         
         } 
 
-        let outgoing; let healOut;
+        let outgoing; let healOut; 
         
-        outgoing = applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(25);
+        // outgoing = applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(25);
 
-        spell.effect ? healOut = applyBuffs(spell.effect[0][1][0],caster,target,spell.types)[0] + damageRoll(15) : 
-        applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(15);
+        // spell.effect ? healOut = applyBuffs(spell.effect[0][1][0],caster,target,spell.types)[0] + damageRoll(15) : 
+        // applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(15);
 
-        outgoing < 0 ? outgoing = 0 : null;
+        // outgoing < 0 ? outgoing = 0 : null;
 
         if (spell.aoe) {
     
-            let [singletarget,team,temp] = [spell,target,spell.cost];
+            let [singletarget,team,temp] = [spell,target.mates,spell.cost];
             [singletarget.aoe,singletarget.cost,singletarget.count] = [null,0,0];
     
             for (const player of team) {
@@ -54,6 +54,13 @@ export function damageCalculator(caster,target,spell) {
             delete singletarget.count;
     
         } else {
+
+            outgoing = applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(25);
+
+            spell.effect ? healOut = applyBuffs(spell.effect[0][1][0],caster,target,spell.types)[0] + damageRoll(15) : 
+            applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(15);
+    
+            outgoing < 0 ? outgoing = 0 : null;
 
             if (spell.ot && spell.power) {
 
@@ -122,7 +129,7 @@ export function damageCalculator(caster,target,spell) {
 
         result = true;
 
-    } else { console.log(`\nInsufficient Mana { ${caster.name} : ${spell.title} }`) }
+    } else { console.log(`\nInsufficient Mana { Cost:${spell.cost} | Mana:${caster.mana} }`) }
 
     return result;
 
