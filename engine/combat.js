@@ -30,12 +30,12 @@ export function checkMana(caster,spell) {
 
 }
 
-export function applyBuffs(n,target,type=['Heal'],position='Out') {
+export function applyBuffs(n,caster,target,type=['Heal']) {
 
-    let targetbuffs; let result = [];
+    let result = []; let charms = caster.hanging.charms; let wards = target.hanging.wards;
 
-    position == 'Out' ? targetbuffs = target.hanging.charms : targetbuffs = target.hanging.wards;
-    
+    let targetbuffs = charms.concat(wards);
+
     targetbuffs.forEach(e => {
 
         let count = 0;

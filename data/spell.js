@@ -29,6 +29,14 @@ export class Attack extends Spell {
     }
 }
 
+export class Heal extends Attack {
+
+    constructor(cost,title,element,accuracy,power,effect,ot=0) {
+        super(cost,title,element,accuracy,power)
+        !this.types.includes('Heal') ? this.types.push('Heal') : null;
+    }
+}
+
 export class AoE extends Spell {
 
     constructor(cost,title,element,accurracy,power,effect,ot=0) {

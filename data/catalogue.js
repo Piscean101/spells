@@ -4,6 +4,14 @@ import { randomChoice } from './math.js';
 
 // RANK X SPELLS
 
+/* New spells 
+    [Fire: Attack +Speed] 
+    [Ice: 'Snow Drift' +Speed -Speed] 
+    [Steel: 'Brace For Impact' Absorb -Speed] 
+    [Light: Heal +Speed] 
+    [Dark: 'Temptation' +Mana -Speed]
+*/
+
 // AoE
 let BitterEnd = new AoE(6,'Bitter End','Dark',80,'Drain',[[effectCatalogue.Drain,[340,.5]],[effectCatalogue.Ward,['Excruciate',150,'Damage',true]]]);
 let BlackHole = new AoE(7,'Black Hole','Dark',85,340,[[effectCatalogue.Charm,['Miasma',-200,'Heal',true]],[effectCatalogue.Charm,['Paranoia',-1000,'Damage']]]);
@@ -19,6 +27,7 @@ let Wildfire = new AoE(2,'Wildfire','Fire',70,315,null,4);
 let BrainFreeze = new Attack(5,'Brain Freeze','Ice',75,585,[[effectCatalogue.Stun,[2]]],3);
 let EnergyHelix = new Instant(2,'Energy Helix','Fire',75,[[effectCatalogue.Heal,[510,3]]],3);
 let Flamethrower = new Attack(5,'Flamethrower','Fire',75,835,null,3);
+let HymnToTheAges = new Attack(7,'Hymn To The Ages','Light',90,0,[[effectCatalogue.Heal,[1270,5]]],5);
 let Nightmare = new Attack(5,'Nightmare','Dark',80,780,null,3);
 let PhoenixSong = new Instant(4,'Phoenix Song','Fire',75,[[effectCatalogue.Heal,[1095,6]]],6);
 let SolarFlare = new Attack(4,'Solar Flare','Light',90,600,null,6);
@@ -50,14 +59,14 @@ let HeroicEpic = new Instant(3,'Heroic Epic','Light',90,[[effectCatalogue.Indest
 let Pinpoint = new Instant(0,'Pintpoint','Steel',100,[[effectCatalogue.Ward,['Pinpoint',75,'Damage']]]);
 // INSTANTS
 let DestroyPip = new Instant(0,'Destroy Pip','Ice',80,[[effectCatalogue.DestroyMana,[1]]]);
-let DestroyWard = new Instant(0,'Destroy Ward','Steel',80,[[effectCatalogue.RemoveWard]]);
-let Dispel = new Instant(1,'Dispel','Light',100,[[effectCatalogue.RemoveCharm]]);
+let DestroyWard = new Instant(0,'Destroy Ward','Steel',80,[[effectCatalogue.RemoveWard,[1]]]);
+let Dispel = new Instant(1,'Dispel','Light',100,[[effectCatalogue.RemoveCharm,[1]]]);
 let Empower = new Instant(2,'Empower','Ice',80,[[effectCatalogue.AddMana,[4]]]);
 let Freeze = new Instant(2,'Freeze','Ice',80,[[effectCatalogue.Stun,[2]]]);
 let Hibernate = new Instant(3,'Hibernate','Ice',80,[[effectCatalogue.Stun,[1]],[effectCatalogue.DestroyMana,[3]]]);
 let Indestructible = new Instant(2,'Indestructible','Steel',80,[[effectCatalogue.Indestructible,['Ward']]]);
-let Invoke = new Instant(3,'Invoke','Dark',85,[[effectCatalogue.RemoveWardAll]]);
-let Overheat = new Instant(3,'Overheat','Fire',75,[[effectCatalogue.RemoveCharmAll]]);
+let Invoke = new Instant(3,'Invoke','Dark',85,[[effectCatalogue.RemoveWardAll,[]]]);
+let Overheat = new Instant(3,'Overheat','Fire',75,[[effectCatalogue.RemoveCharmAll,[]]]);
 let Shred = new Instant(2,'Shred','Steel',100,[[effectCatalogue.RemoveWard,[2]]]);
 let Stun = new Instant(0,'Stun','Ice',100,[[effectCatalogue.Stun,[1]]]);
 let StunBlock = new Instant(0,'Stun Block','Ice',100,[[effectCatalogue.Protect,['Stun Block','Stun']]]);
@@ -109,6 +118,7 @@ export let spellCatalogue = {
         Glimmers,
         GuardianOfTheFae,
         HeroicEpic,
+        HymnToTheAges,
         Retribution,
         Splendor,
         SolarFlare,
@@ -185,11 +195,11 @@ export let spellCatalogue = {
             
             if (element) {
 
-                result.includes(randomSpellElement) ? n++ : result.push(randomSpellElement);
+                randomSpellElement.aoe ? n++ : result.includes(randomSpellElement) ? n++ : result.push(randomSpellElement);
 
             } else {
 
-                result.includes(randomSpell) ? n++ : result.push(randomSpell);
+                randomSpell.aoe ? n++ : result.includes(randomSpell) ? n++ : result.push(randomSpell);
 
             }
             
@@ -205,6 +215,6 @@ export let spellCatalogue = {
 
 };
 
-spellCatalogue.checkCatalogue();
+// spellCatalogue.checkCatalogue();
 
 // AT 50 => STEEL(11) LIGHT(10) Ice(11) Fire(8) Dark(10)

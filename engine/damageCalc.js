@@ -13,11 +13,15 @@ export function damageCalculator(caster,target,spell) {
 
         if (!spell.aoe) { 
         
-        if (applyBuffs(spell.power,caster,spell.types)[1]) {
+        if (applyBuffs(spell.power,caster,target,spell.types)[1]) {
 
-            for (let i = 0 ; i < applyBuffs(spell.power,caster,spell.types)[1].length ; i++) {
+            for (let i = 0 ; i < applyBuffs(spell.power,caster,target,spell.types)[1].length ; i++) {
 
-                if (!spell.count || spell.count == 1) { console.log(applyBuffs(spell.power,caster,spell.types)[1][i]) }
+                if (!spell.count || spell.count == 1) { 
+                    
+                    console.log(applyBuffs(spell.power,caster,target,spell.types)[1][i]);
+                
+                }
 
                 }            
 
@@ -27,9 +31,9 @@ export function damageCalculator(caster,target,spell) {
 
         let outgoing; let healOut;
         
-        spell.power ? outgoing = applyBuffs(spell.power,caster,spell.types)[0] + damageRoll(25) : null;
+        outgoing = applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(25);
 
-        outgoing <= 0 ? outgoing = 0 : null;
+        outgoing < 0 ? outgoing = 0 : null;
 
         if (spell.aoe) {
     
@@ -80,13 +84,13 @@ export function damageCalculator(caster,target,spell) {
 
                             caster.hp > caster.maxhp ? caster.hp = caster.maxhp : null;
 
-                        } else if (e[0] == effectCatalogue.Heal && !spell.ot) {
+                        } else if (e[0] == effectCatalogue.Heal) {
 
-                            healOut = applyBuffs(...e[1],caster,spell.types)[0];
+                            console.log(spell);
 
-                            healOut <= 0 ? healOut = 0 : null;
+                            healOut = applyBuffs(e[1][0],caster,target,spell.types)[0];
 
-                            e[0](target,healOut)
+                            !spell.ot ? e[0](target,healOut) : e[0](target,healOut,spell.ot);
 
                         } else {
 

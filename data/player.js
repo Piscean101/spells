@@ -6,7 +6,7 @@ import { boyName , girlName , lastName , RandomName } from "./name.js";
 // import { effectCatalogue } from "./effect.js";
 
 class Player {
-    constructor(name,element,hp = 1000,mana=0) {
+    constructor(name,element,hp = 1500,mana=0) {
         this.name = name; this.hp = hp; this.mana = mana; this.speed = 0; this.maxhp = hp;
         this.hanging = {
             charms: [], damage: [], protection: [], stun: [], wards: []
@@ -48,7 +48,7 @@ let team2 = {
     p4,
 }
 
-let board1 = new Board(...Object.values(team1),...Object.values(team2));
+let board1 = new Board(0,1,...Object.values(team1),...Object.values(team2));
 let t1 = board1.teams.team1; let t2 = board1.teams.team2;
 
 export { Player , board1 , t1 , t2 , p1 , p2 , p3 , p4 , p5 , p6 }

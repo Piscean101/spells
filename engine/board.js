@@ -4,7 +4,7 @@
 
 export class Board {
 
-    constructor(...players) {
+    constructor(manaLevel=0,manaGrowth=1,...players) {
 
         this.teams = {
 
@@ -16,7 +16,7 @@ export class Board {
 
         this.settings = {
                 
-            manaLevel: 0, manaGrowth: 1, round: 0,
+            manaLevel: manaLevel, manaGrowth: manaGrowth, round: 0,
 
         }
 
@@ -79,9 +79,19 @@ export class Board {
     
     nextRound(mana=this.settings.manaGrowth) {
 
+        this.gameStatus();
+
         this.upkeep(mana);
 
-        console.log('\n',`*************** ROUND ${this.settings.round} ***************`,'\n',...this.teams.roster);
+        console.log(`\n *************** ROUND ${this.settings.round} *************** \n`);
+
+        this.showTeams();
+
+    }
+
+    showTeams() {
+
+        console.log(...this.teams.roster)
 
     }
 
@@ -97,15 +107,19 @@ export class Board {
 
             tm.hanging.protection = tm.hanging.protection.filter(e => { return e.used == false });
 
+            tm.hanging.damage = tm.hanging.damage.filter(e => { return e[0].length });
+
             tm.hanging.damage.forEach(e => {
 
-                n = e[0].shift();
+                n = e[0].pop();
 
                 tm.hp += n;
 
-                n > 0 ? console.log(`${tm.name} Restored {${n}} health`) : console.log(`${tm.name} Damaged by { ${e[1]} } {${-n}}`)
+                n > 0 ? console.log(`\n ${tm.name} Restored {${n}} health`) : console.log(`\n ${tm.name} Damaged by { ${e[1]} } {${-n}}`);
 
-            })
+                tm.hp > tm.maxhp ? tm.hp = tm.maxhp : null;
+
+            });
 
         }
 

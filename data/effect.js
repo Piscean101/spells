@@ -98,7 +98,7 @@ let DestroyMana = (target,n=1,siphon=false) => {
  
 }
 
-let Heal = (target,n,ot=false) => {
+let Heal = (target,n,ot=0) => {
 
     let result;
 
@@ -174,14 +174,20 @@ let RemoveCharm = (target,n=1) => {
 
 let RemoveCharmAll = (target) => {
 
-    let [charms,point] = [target.hanging.charms,null];
+    let [charms,point,result] = [target.hanging.charms,null,0];
 
     for (let i = 0; i <= charms.length; i++) {
 
-        point = charms.shift();
-        isIndestructible(point) ? charms.push(point) : null;
+        if (charms.length) {
+
+            point = charms.shift();
+            isIndestructible(point) ? charms.push(point) : result++;
+
+        }
 
     }
+
+    console.log(`Removed ${result} charms`);
 
     return charms;
 }
@@ -204,22 +210,27 @@ let RemoveWard = (target,n=1) => {
     return wards;
 }
 
-
 let RemoveWardAll = (target) => {
 
-    let [wards,point] = [target.hanging.wards,null];
+    let [wards,point,result] = [target.hanging.wards,null,0];
 
     for (let i = 0; i <= wards.length; i++) {
 
-        point = wards.shift();
-        isIndestructible(point) ? wards.push(point) : null;
+        if(wards.length) {
 
+            point = wards.shift();
+            isIndestructible(point) ? wards.push(point) : result++;
+
+        }
+        
     }
+
+    console.log(`Removed ${result} wards`);
 
     return wards;
 }
 
-let Sacrifice = (target,n,caster=null) => {
+let Sacrifice = (/*incomplete*/) => {
 
 }
 
@@ -278,12 +289,6 @@ let isProtected = (e,type) => {
     return e.hanging.protection.filter(e => { return e.type == type });
 
 }
-
-
-
-
-
-
 
 export let effectCatalogue = {
     AddMana: AddMana,
