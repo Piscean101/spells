@@ -1,3 +1,11 @@
+let randomNumber = (max,...exclusions) => {
+    let result = Math.ceil(Math.random()*max);
+    while (exclusions.includes(result)) {
+        result = Math.ceil(Math.random()*max);
+    }
+    return result;
+}
+
 let overTime = (n,rounds,source='N/A',heal=false) => {
 
     let result = [];
@@ -17,6 +25,8 @@ let overTime = (n,rounds,source='N/A',heal=false) => {
 let AddMana = (target,n=1) => {
 
     let result = 0;
+
+    n = randomNumber(n,0);
 
     while (result < n) {
 
@@ -84,7 +94,7 @@ let DestroyMana = (target,n=1,siphon=false) => {
     
         }
     
-        console.log(`Destroyed ${result} mana in ${target.name}'s mana pool { ${target.mana} }`);
+        console.log(`Destroyed ${result} mana in ${target.name}'s mana pool { Remaining: ${target.mana} }`);
 
         if (siphon) {
 
@@ -234,13 +244,41 @@ let Sacrifice = (/*incomplete*/) => {
 
 }
 
+let Speed = (target,n=1,siphon=0) => {
+
+    let result = 0;
+
+    if (isProtected(target,'Speed').length) {
+
+        console.log(`Stat reduction Blocked!`);
+        isProtected(target,'Speed').splice(0,1);
+        
+
+    } else if (isProtected(target,'Stat').length) {
+    
+        console.log(`Stat reduction Blocked!`);
+        isProtected(target,'Stat').splice(0,1);
+    
+    } else {
+
+        n > 0 ? console.log(`Increased ${target.name}'s speed {+${Math.abs(n)}}`) : console.log(`Decreased ${target.name}'s speed {${n}}`);
+        target.speed += n;
+        target.speed < 0 ? target.speed = 0 : null;
+        result += n;
+
+    }
+
+    return result;
+ 
+}
+
 let Stun = (target,n) => {
 
     if (isProtected(target,'Stun').length) {
 
         console.log('Stun Blocked!');
         isProtected(target,'Stun').splice(0,1);
-        target.hanging.protection[0].used = true;
+        // target.hanging.protection.filter(e => { return  e.type == 'Stun' })[0].used = true;
 
     } else {
 
@@ -297,11 +335,14 @@ export let effectCatalogue = {
     Drain: Drain,
     Heal: Heal,
     Indestructible: Indestructible,
+    isIndestructible: isIndestructible,
+    isProtected: isProtected,
     Protect: Protect,
     RemoveCharm: RemoveCharm,
     RemoveCharmAll: RemoveCharmAll,
     RemoveWard: RemoveWard,
     RemoveWardAll: RemoveWardAll,
+    Speed: Speed,
     Stun: Stun,
     Ward: Ward
 }

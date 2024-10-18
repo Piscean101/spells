@@ -8,8 +8,8 @@ export function damageCalculator(caster,target,spell) {
 
     if (checkMana(caster,spell)) {
 
-        spell.aoe === true ? console.log(`\n ${caster.name} cast ${spell.title}!`) : 
-        spell.aoe === false ? console.log(`\n ${caster.name} cast ${spell.title}!`) : null;
+        // spell.aoe === true ? console.log(`\n ${caster.name} cast ${spell.title} on ${target.name}`) : 
+        // spell.aoe === false ? console.log(`\n ${caster.name} cast ${spell.title} on ${target.name}`) : null;
 
         if (!spell.aoe) { 
         
@@ -31,9 +31,10 @@ export function damageCalculator(caster,target,spell) {
 
         let outgoing; let healOut;
         
-        outgoing = applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(30);
+        outgoing = applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(25);
 
-        healOut = applyBuffs(spell.effect[0][1][0],caster,target,spell.types)[0] + damageRoll(15);
+        spell.effect ? healOut = applyBuffs(spell.effect[0][1][0],caster,target,spell.types)[0] + damageRoll(15) : 
+        applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(15);
 
         outgoing < 0 ? outgoing = 0 : null;
 
@@ -55,10 +56,17 @@ export function damageCalculator(caster,target,spell) {
         } else {
 
             if (spell.ot && spell.power) {
-    
-                console.log(`${target.name} is afflicted by ${spell.title} damage {${outgoing}} over ${spell.ot} rounds`);
 
-                target.hanging.damage.push(overTime(outgoing,spell.ot,spell.title));
+                if (effectCatalogue.isProtected(target,'DoT').length) {
+
+                    console.log(`${target.name} was Immune!`);
+                    target.hanging.protection.filter(e => { return e.type == 'DoT' })[0].used = true;
+
+                } else {
+
+                    console.log(`${target.name} is afflicted by ${spell.title} damage {${outgoing}} over ${spell.ot} rounds`);
+    
+                    target.hanging.damage.push(overTime(outgoing,spell.ot,spell.title)); } 
     
             } else if (!spell.ot && spell.power != 'Drain' && spell.power) {
     
@@ -72,17 +80,25 @@ export function damageCalculator(caster,target,spell) {
     
                 spell.effect.forEach(e => {
     
-                    if (e[0] == effectCatalogue.DestroyMana && e[1][1] == 'mana') {
+                    if (e[0] == effectCatalogue.DestroyMana && e[1][1] == 'Siphon') {
     
                         caster.mana += e[0](target,...e[1]);
     
+                    } else if (e[0] == effectCatalogue.Speed && e[1][1] == 'Siphon')  {
+
+                        let result = Math.abs(e[0](target,...e[1]));
+                        caster.speed += result;
+                        console.log(`Increased ${caster.name}'s speed {+${result}}`);
+
                     } else {
 
                         if (e[0] == effectCatalogue.Drain) {
 
-                            let d = e[0](target,...e[1]);
+                            let d = applyBuffs(e[1][0],caster,target,spell.types)[0];
 
-                            target.hp -= d[0]; caster.hp += d[1]; 
+                            e[0](target,d,e[1][1]);
+
+                            target.hp -= d; caster.hp += d; 
 
                             caster.hp > caster.maxhp ? caster.hp = caster.maxhp : null;
 

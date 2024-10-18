@@ -1,3 +1,4 @@
+import { queue } from "./combat.js";
 // ATTACH QUEUE TO BOARD
 // IMPORT NAMES TO PLAYER AND DECLARE PLAYERS THERE 
 ///// DIFFERENT GAME MODES VIA BOARD INIT
@@ -79,6 +80,8 @@ export class Board {
     }
     
     nextRound(mana=this.settings.manaGrowth) {
+
+        queue.dequeue();
 
         this.gameStatus();
 

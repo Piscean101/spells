@@ -15,17 +15,29 @@ class Player {
 
     cast(spell,target,caster=this) {
 
-        spell = spellCatalogue.findSpell(spell);
-
-        queue.queue.push([this.speed,caster,target,spell]);
+            spell = spellCatalogue.findSpell(spell);
+    
+            queue.queue.push([this.speed,caster,target,spell]);
 
     }
 
     action(target,spell,trueDmg=0) {
 
-        if (spell) { damageCalculator(this,target,spell) === true ? this.mana -= spell.cost : null };
-        
-        if (trueDmg) { target.hp -= trueDmg ; return trueDmg };
+        if (this.hanging.stun.length) {
+
+            console.log(`\n ${this.name} cannot move!`);
+            this.hanging.stun.splice(0,1);
+
+        } else {
+
+            spell.aoe ? console.log(`\n ${this.name} cast ${spell.title}`) : 
+            spell.aoe === false ? console.log(`\n ${this.name} cast ${spell.title} on ${target.name}`) : null;
+
+            if (spell) { damageCalculator(this,target,spell) === true ? this.mana -= spell.cost : null };
+            
+            if (trueDmg) { target.hp -= trueDmg ; return trueDmg };
+
+        }
 
     }
 
@@ -48,7 +60,7 @@ let team2 = {
     p4,
 }
 
-let board1 = new Board(0,1,...Object.values(team1),...Object.values(team2));
+let board1 = new Board(4,1,...Object.values(team1),...Object.values(team2));
 let t1 = board1.teams.team1; let t2 = board1.teams.team2;
 
 export { Player , board1 , t1 , t2 , p1 , p2 , p3 , p4 , p5 , p6 }

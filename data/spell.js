@@ -11,11 +11,6 @@ export class Spell {
         this.effect = effect;
         this.types = [];
         this.ot = ot;
-        if (this.effect) {
-            this.effect.forEach(e => {
-                e.includes(effectCatalogue.Heal) ? this.types.push('Heal') : null;
-            })
-        }
     }
 
 }
@@ -26,7 +21,7 @@ export class Attack extends Spell {
         super(cost,title,element,accuracy,effect)
         this.power = power;
         this.ot = ot;
-        this.types.push('Damage');
+        this.power ? this.types.push('Damage') : this.types.push('Heal');
     }
 }
 
