@@ -31,7 +31,9 @@ export function damageCalculator(caster,target,spell) {
 
         let outgoing; let healOut;
         
-        outgoing = applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(25);
+        outgoing = applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(30);
+
+        healOut = applyBuffs(spell.effect[0][1][0],caster,target,spell.types)[0] + damageRoll(15);
 
         outgoing < 0 ? outgoing = 0 : null;
 
@@ -86,11 +88,7 @@ export function damageCalculator(caster,target,spell) {
 
                         } else if (e[0] == effectCatalogue.Heal) {
 
-                            console.log(spell);
-
-                            healOut = applyBuffs(e[1][0],caster,target,spell.types)[0];
-
-                            !spell.ot ? e[0](target,healOut) : e[0](target,healOut,spell.ot);
+                            !spell.ot ? e[0](target,healOut) : e[0](target,healOut,e[1][1]);
 
                         } else {
 

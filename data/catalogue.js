@@ -5,11 +5,19 @@ import { randomChoice } from './math.js';
 // RANK X SPELLS
 
 /* New spells 
+
+    SPEED
     [Fire: Attack +Speed] 
     [Ice: 'Snow Drift' +Speed -Speed] 
     [Steel: 'Brace For Impact' Absorb -Speed] 
     [Light: Heal +Speed] 
     [Dark: 'Temptation' +Mana -Speed]
+
+    OVERTIME
+    [Fire: 'Wisps' Steal HoT]
+    [Ice: 'Ice Out' -DoT]
+    [Light: 'Triage' -Dot(All)]
+    [Dark: -HoT]
 */
 
 // AoE
@@ -25,7 +33,7 @@ let WarCry = new AoE(3,'War Cry','Fire',75,0,[[effectCatalogue.Charm,['War Cry',
 let Wildfire = new AoE(2,'Wildfire','Fire',70,315,null,4);
 // OVER-TIMES
 let BrainFreeze = new Attack(5,'Brain Freeze','Ice',75,585,[[effectCatalogue.Stun,[2]]],3);
-let EnergyHelix = new Instant(2,'Energy Helix','Fire',75,[[effectCatalogue.Heal,[510,3]]],3);
+let EnergyHelix = new Attack(2,'Energy Helix','Fire',75,0,[[effectCatalogue.Heal,[510,3]]],3);
 let Flamethrower = new Attack(5,'Flamethrower','Fire',75,835,null,3);
 let HymnToTheAges = new Attack(7,'Hymn To The Ages','Light',90,0,[[effectCatalogue.Heal,[1270,5]]],5);
 let Nightmare = new Attack(5,'Nightmare','Dark',80,780,null,3);

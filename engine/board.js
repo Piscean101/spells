@@ -1,6 +1,7 @@
 // ATTACH QUEUE TO BOARD
 // IMPORT NAMES TO PLAYER AND DECLARE PLAYERS THERE 
 ///// DIFFERENT GAME MODES VIA BOARD INIT
+    /// i. Swap a random spell end of every round
 
 export class Board {
 

@@ -2,7 +2,7 @@ import { effectCatalogue } from "./effect.js";
 
 export class Spell {
 
-    constructor(cost,title,element,accuracy,effect=null) {
+    constructor(cost,title,element,accuracy,effect=null,ot=0) {
         this.aoe = false;
         this.cost = cost
         this.title = title;
@@ -10,6 +10,7 @@ export class Spell {
         this.accuracy = accuracy;
         this.effect = effect;
         this.types = [];
+        this.ot = ot;
         if (this.effect) {
             this.effect.forEach(e => {
                 e.includes(effectCatalogue.Heal) ? this.types.push('Heal') : null;
