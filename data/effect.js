@@ -266,6 +266,16 @@ let Sacrifice = () => {
 
 }
 
+let Self = (target,name,e='wards',n=0,type='Damage',p=false,i=false,used=false) => {
+
+    e = e.toLowerCase();
+
+    e == 'charms' ? Charm(target,name,n,type,p,i,used) :
+    e == 'wards' ? Ward(target,name,n,type,p,i,used) : 
+    Protect(target,name,type,p,i);
+
+}
+
 let Speed = (target,n=1,siphon=0) => {
 
     let result = 0;
@@ -367,6 +377,7 @@ export let effectCatalogue = {
     RemoveWard: RemoveWard,
     RemoveWardAll: RemoveWardAll,
     Sacrifice: Sacrifice,
+    Self: Self,
     Speed: Speed,
     Stun: Stun,
     Ward: Ward

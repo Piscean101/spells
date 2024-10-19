@@ -12,7 +12,7 @@ const nextRound = document.getElementById('nextRound');
 
 queue1.addEventListener("click", (e) => {
     console.log('Queue');
-    p2.cast('Fortress',p5);
+    p2.cast('Combat Behemoth',p5);
     p1.cast('Witch Hunt',p4);
     p2.cast('Melt',p5);
     p1.cast(spellCatalogue.pickRandom(),p4);

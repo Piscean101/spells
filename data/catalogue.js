@@ -40,6 +40,7 @@ let PhoenixSong = new Instant(4,'Phoenix Song','Fire',75,[[effectCatalogue.Heal,
 let SolarFlare = new Attack(4,'Solar Flare','Light',90,600,null,6);
 // ATTACKS
 let Avalanche = new Attack(6,'Avalanche','Ice',80,380,[[effectCatalogue.DestroyMana,[1,'Siphon']],[effectCatalogue.Charm,['Entomb',-300,'Damage',true]]]);
+let CombatBehemoth = new Attack(6,'Combat Behemoth','Steel',80,600,[[effectCatalogue.Self,['Block','Protection']]]);
 let DarkPact = new Attack(5,'Dark Pact','Dark',85,'Drain',[[effectCatalogue.Drain,[350,.5]],[effectCatalogue.Charm,['Condemn',-250,'Heal',true]]]);
 let Firecracker = new Attack(2,'Firecracker','Fire',75,250,[[effectCatalogue.Speed,[0,1]]]);
 let Frost = new Attack(0,'Frost','Ice',100,60);
@@ -78,9 +79,10 @@ let Excruciate = new Instant(0,'Excruciate','Dark',85,[[effectCatalogue.Ward,['E
 let Fortress = new Instant(3,'Fortress','Steel',100,[[effectCatalogue.Ward,['Absorb',-250,'Damage',true,true]]]);
 let GuardianOfTheFae = new Instant(4,'Guardian Of The Fae','Light',90,[[effectCatalogue.Ward,['Absorb',-600,'Damage']],[effectCatalogue.RemoveCharm,[1]]]);
 let HeroicEpic = new Instant(3,'Heroic Epic','Light',90,[[effectCatalogue.Indestructible,['Ward']],[effectCatalogue.Ward,['Heroic Epic',200,'Heal',true,true]]]);
+let Juggernaut = new Instant(3,'Juggernaut','Steel',80,[[effectCatalogue.Protect,['Block','DoT']],[effectCatalogue.Protect,['Block','DoT']],[effectCatalogue.Protect,['Block','DoT']]]);
 let Pinpoint = new Instant(0,'Pinpoint','Steel',100,[[effectCatalogue.Ward,['Pinpoint',150,'Damage']]]);
 // INSTANTS
-let Block = new Instant(0,'Block','Steel',80,[[effectCatalogue.Protect,['Block','DoT']]]);
+let Block = new Instant(1,'Block','Steel',80,[[effectCatalogue.Protect,['Block','DoT']]]);
 let DestroyPip = new Instant(0,'Destroy Pip','Ice',80,[[effectCatalogue.DestroyMana,[1]]]);
 let DestroyWard = new Instant(0,'Destroy Ward','Steel',80,[[effectCatalogue.RemoveWard,[1]]]);
 let Dispel = new Instant(1,'Dispel','Light',100,[[effectCatalogue.RemoveCharm,[1]]]);
@@ -177,12 +179,14 @@ export let spellCatalogue = {
         Block,
         BraceForImpact,
         ChainsawMassacre,
+        CombatBehemoth,
         Corkscrew,
         DestroyWard,
         Fortress,
         Grindhouse,
         Guillotine,
         Indestructible,
+        Juggernaut,
         MiracleSentinel,
         NeedlePunch,
         Pinpoint,
@@ -198,7 +202,7 @@ export let spellCatalogue = {
             
             filter = catalogue.filter(e => { return e[0] == element })[0][1];
 
-            console.log(filter);
+            // console.log(filter);
     
             total = filter.length;
     
@@ -245,7 +249,7 @@ export let spellCatalogue = {
 
         while ( n > 0 ) {
 
-            randomSpell = randomChoice(...randomChoice(...catalogue)[1]); randomSpellElement = randomChoice(element);
+            randomSpell = randomChoice(...randomChoice(...catalogue)[1]); randomSpellElement = randomChoice(...spellCatalogue.checkCatalogue(element));
             
             if (element) {
 
@@ -261,14 +265,14 @@ export let spellCatalogue = {
 
         }
 
-        n == 1 ? result = result : null;
-
         return result[0].title;
 
     }
 
 };
 
-spellCatalogue.checkCatalogue();
+// spellCatalogue.checkCatalogue();
+
+console.log(spellCatalogue.pickRandom(1,'Fire'));
 
 // AT 60 => STEEL(12) LIGHT(12) Ice(13) Fire(12) Dark(11)

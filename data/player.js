@@ -3,14 +3,15 @@ import { damageCalculator } from "../engine/damageCalc.js";
 import { queue } from "../engine/combat.js";
 import { spellCatalogue } from "./catalogue.js";
 import { boyName , girlName , lastName , RandomName } from "./name.js";
-// import { effectCatalogue } from "./effect.js";
+import { accuracy } from "./math.js";
 
 class Player {
     constructor(name,element,hp = 5000,mana=0) {
-        this.name = name; this.hp = hp; this.mana = mana; this.speed = 0; this.maxhp = hp; this.mates = [];
+        this.name = name; this.element = element; this.hp = hp; this.mana = mana; this.speed = 0; this.maxhp = hp; this.mates = []; this.acc = 0;
         this.hanging = {
             charms: [], damage: [], protection: [], stun: [], wards: []
         }
+        this.spellbook = [];
     }
 
     cast(spell,target,caster=this) {
@@ -35,7 +36,12 @@ class Player {
                 spell.aoe ? console.log(`\n %c ${this.name} cast ${spell.title}`,'color:green;font-size:18px;font-weight:bold') : 
                 spell.aoe === false ? console.log(`\n %c ${this.name} cast ${spell.title} on ${target.name}`,'color:green;font-size:15px;font-weight:bold') : null;
                 
-                damageCalculator(this,target,spell) === true ? this.mana -= spell.cost : null 
+                if(accuracy(spell.accuracy)) {
+
+                    damageCalculator(this,target,spell) === true ? this.mana -= spell.cost : null;
+
+                } else { console.log(`%c Fizzle...`,'font-size: 10px') }
+                
             
             };
             
