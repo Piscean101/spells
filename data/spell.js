@@ -25,16 +25,9 @@ export class Attack extends Spell {
     }
 }
 
-export class Heal extends Attack {
-
-    constructor(cost,title,element,accuracy,power,effect,ot=0) {
-        super(cost,title,element,accuracy,power)
-        !this.types.includes('Heal') ? this.types.push('Heal') : null;
-    }
-}
 
 export class AoE extends Spell {
-
+    
     constructor(cost,title,element,accurracy,power,effect,ot=0) {
         super(cost,title,element,accurracy,effect)
         this.power = power;
@@ -42,15 +35,24 @@ export class AoE extends Spell {
         this.ot = ot;
         this.power ? this.types.push('Damage','AoE') : this.types.push('AoE');
     }
-
+    
 }
 
 export class Instant extends Spell {
-
+    
     constructor(cost,title,element,accuracy,effect) {
         super(cost,title,element,accuracy,effect) 
         this.types.push('Instant');
     }
-
+    
 }
 
+export class Heal extends Instant {
+
+    constructor(cost,title,element,accuracy,effect,ot=0) {
+        super(cost,title,element,accuracy,effect);
+        this.types=[];this.types.push('Heal');
+        this.power = 0;
+    }
+
+}

@@ -97,6 +97,20 @@ export function damageCalculator(caster,target,spell) {
                         caster.speed += result;
                         console.log(`Increased ${caster.name}'s speed {+${e[1][1]}}`);
 
+                    } else if (e[0] == effectCatalogue.Sacrifice) {
+
+                        let drain = applyBuffs(e[1][0],caster,target,['Damage']);
+
+                        let sacrifice = drain[0];
+                        
+                        caster.action(caster,null,sacrifice);
+
+                        console.log(...drain[1]);
+
+                        console.log(`${caster.name} sacrificed ${sacrifice} health`)
+
+                        effectCatalogue.Heal(target,applyBuffs(e[1][1]*sacrifice,caster,target,['Heal'])[0]);
+
                     } else {
 
                         if (e[0] == effectCatalogue.Drain) {

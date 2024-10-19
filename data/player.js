@@ -30,10 +30,14 @@ class Player {
 
         } else {
 
-            spell.aoe ? console.log(`\n %c ${this.name} cast ${spell.title}`,'color:green;font-size:18px;font-weight:bold') : 
-            spell.aoe === false ? console.log(`\n %c ${this.name} cast ${spell.title} on ${target.name}`,'color:green;font-size:15px;font-weight:bold') : null;
-
-            if (spell) { damageCalculator(this,target,spell) === true ? this.mana -= spell.cost : null };
+            if (spell) {
+                
+                spell.aoe ? console.log(`\n %c ${this.name} cast ${spell.title}`,'color:green;font-size:18px;font-weight:bold') : 
+                spell.aoe === false ? console.log(`\n %c ${this.name} cast ${spell.title} on ${target.name}`,'color:green;font-size:15px;font-weight:bold') : null;
+                
+                damageCalculator(this,target,spell) === true ? this.mana -= spell.cost : null 
+            
+            };
             
             if (trueDmg) { target.hp -= trueDmg ; return trueDmg };
 

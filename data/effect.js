@@ -112,6 +112,8 @@ let Heal = (target,n,ot=0) => {
 
     let result;
 
+    n = Math.floor(n);
+
     if (n > 0 && ot) {
 
         result = `${target.name} is recovering {${n}} health over ${ot} rounds`;
@@ -242,6 +244,8 @@ let RemoveWardAll = (target) => {
 
 let Sacrifice = (/*incomplete*/) => {
 
+
+
 }
 
 let Speed = (target,n=1,siphon=0) => {
@@ -344,6 +348,7 @@ export let effectCatalogue = {
     RemoveCharmAll: RemoveCharmAll,
     RemoveWard: RemoveWard,
     RemoveWardAll: RemoveWardAll,
+    Sacrifice: Sacrifice,
     Speed: Speed,
     Stun: Stun,
     Ward: Ward
