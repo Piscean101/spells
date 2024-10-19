@@ -91,11 +91,11 @@ export function damageCalculator(caster,target,spell) {
     
                         caster.mana += e[0](target,...e[1]);
     
-                    } else if (e[0] == effectCatalogue.Speed && e[1][1] == 'Siphon')  {
+                    } else if (e[0] == effectCatalogue.Speed && e[1][1])  {
 
                         let result = Math.abs(e[0](target,...e[1]));
                         caster.speed += result;
-                        console.log(`Increased ${caster.name}'s speed {+${result}}`);
+                        console.log(`Increased ${caster.name}'s speed {+${e[1][1]}}`);
 
                     } else {
 
@@ -129,7 +129,7 @@ export function damageCalculator(caster,target,spell) {
 
         result = true;
 
-    } else { console.log(`\nInsufficient Mana { Cost:${spell.cost} | Mana:${caster.mana} }`) }
+    } else { console.log(` %c Insufficient Mana { Cost:${spell.cost} | Mana:${caster.mana} }`,'color:red') }
 
     return result;
 

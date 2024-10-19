@@ -25,13 +25,13 @@ class Player {
 
         if (this.hanging.stun.length) {
 
-            console.log(`\n ${this.name} cannot move!`);
+            console.log(`\n >>${this.name} cannot move!`);
             this.hanging.stun.splice(0,1);
 
         } else {
 
-            spell.aoe ? console.log(`\n ${this.name} cast ${spell.title}`) : 
-            spell.aoe === false ? console.log(`\n ${this.name} cast ${spell.title} on ${target.name}`) : null;
+            spell.aoe ? console.log(`\n %c ${this.name} cast ${spell.title}`,'color:green;font-size:18px;font-weight:bold') : 
+            spell.aoe === false ? console.log(`\n %c ${this.name} cast ${spell.title} on ${target.name}`,'color:green;font-size:15px;font-weight:bold') : null;
 
             if (spell) { damageCalculator(this,target,spell) === true ? this.mana -= spell.cost : null };
             
@@ -62,7 +62,7 @@ let team2 = {
     p4
 }
 
-let board1 = new Board(4,3,...Object.values(team1),...Object.values(team2));
+let board1 = new Board(3,2,...Object.values(team1),...Object.values(team2));
 let t1 = board1.teams.team1; let t2 = board1.teams.team2;
 
 export { Player , board1 , t1 , t2 , p1 , p2 , p3 , p4 , p5 , p6 }

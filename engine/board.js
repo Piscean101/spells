@@ -52,7 +52,7 @@ export class Board {
 
                 for (const p of t) {
 
-                    p.mates.push(...t.filter(e => { return e != p }));
+                    p.mates.push(...t);
 
                 }
 
@@ -78,7 +78,7 @@ export class Board {
 
     endGame(result=null,winner=null) {
 
-        console.log('game over');
+        console.log('>>>> game over');
         
     }
     
@@ -131,7 +131,7 @@ export class Board {
 
                 tm.hp += n;
 
-                n > 0 ? console.log(`\n ${tm.name} Restored {${n}} health`) : console.log(`\n ${tm.name} Damaged by { ${e[1]} } {${-n}}`);
+                n > 0 ? console.log(`\n >>${tm.name} Restored {${n}} health`) : console.log(`\n >>${tm.name} Damaged by { ${e[1]} } {${-n}}`);
 
                 tm.hp > tm.maxhp ? tm.hp = tm.maxhp : null;
 

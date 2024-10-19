@@ -144,7 +144,7 @@ let Indestructible = (target,type='Ward') => {
         if (enchantment.length) {
 
             enchantment[enchantment.length-1].indestructible = true;
-            console.log(`${target.name}'s ${type} is now Indestructible`);
+            console.log(`${target.name}'s ${type} ${enchantment[enchantment.length-1].name} is now Indestructible`);
 
         } else {
             
@@ -261,12 +261,14 @@ let Speed = (target,n=1,siphon=0) => {
     
     } else {
 
-        n > 0 ? console.log(`Increased ${target.name}'s speed {+${Math.abs(n)}}`) : console.log(`Decreased ${target.name}'s speed {${n}}`);
+        n > 0 ? console.log(`Increased ${target.name}'s speed {+${Math.abs(n)}}`) :
+        n < 0 ? console.log(`Decreased ${target.name}'s speed {${n}}`) : null;
         target.speed += n;
         target.speed < 0 ? target.speed = 0 : null;
-        result += n;
 
     }
+
+    siphon ? result = siphon : result = n;
 
     return result;
  

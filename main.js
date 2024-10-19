@@ -11,6 +11,7 @@ const queue1 = document.getElementById('queue');
 const nextRound = document.getElementById('nextRound');
 
 queue1.addEventListener("click", (e) => {
+    console.log('Queue');
     p1.cast(spellCatalogue.pickRandom(),p4); 
     p2.cast(spellCatalogue.pickRandom(),p5);
     p3.cast(spellCatalogue.pickRandom(),p6);
