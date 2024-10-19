@@ -156,6 +156,24 @@ let Indestructible = (target,type='Ward') => {
 
 }
 
+let Melt = (target,type='charms') => {
+
+    type = type.toLowerCase();
+
+    target.hanging[type].forEach(e => {
+
+        e.indestructible = false;
+        
+    });
+
+    console.log(`${target.name}'s ${type} can be destroyed!`);
+
+    target.hanging.protection.length ? console.log(`Destroyed ${target.name}'s protection`,`\n`) : null;
+
+    target.hanging.protection = [];
+
+}
+
 let Protect = (target,name,type='Stun',p=false,i=false) => {
 
     let protection = target.hanging.protection;
@@ -242,7 +260,7 @@ let RemoveWardAll = (target) => {
     return wards;
 }
 
-let Sacrifice = (/*incomplete*/) => {
+let Sacrifice = () => {
 
 
 
@@ -284,7 +302,6 @@ let Stun = (target,n) => {
 
         console.log('Stun Blocked!');
         isProtected(target,'Stun').splice(0,1);
-        // target.hanging.protection.filter(e => { return  e.type == 'Stun' })[0].used = true;
 
     } else {
 
@@ -343,6 +360,7 @@ export let effectCatalogue = {
     Indestructible: Indestructible,
     isIndestructible: isIndestructible,
     isProtected: isProtected,
+    Melt: Melt,
     Protect: Protect,
     RemoveCharm: RemoveCharm,
     RemoveCharmAll: RemoveCharmAll,

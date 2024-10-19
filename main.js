@@ -12,11 +12,15 @@ const nextRound = document.getElementById('nextRound');
 
 queue1.addEventListener("click", (e) => {
     console.log('Queue');
+    p2.cast('Fortress',p5);
+    p1.cast('Witch Hunt',p4);
+    p2.cast('Melt',p5);
+    p1.cast(spellCatalogue.pickRandom(),p4);
     p2.cast(spellCatalogue.pickRandom(),p5);
     p3.cast(spellCatalogue.pickRandom(),p6);
-    p4.cast(spellCatalogue.pickRandom(),p1);
-    p5.cast(spellCatalogue.pickRandom(),p2);
-    p6.cast(spellCatalogue.pickRandom(),p3)
+    p4.cast(spellCatalogue.pickRandom(),p3);
+    p5.cast(spellCatalogue.pickRandom(),p1);
+    p6.cast(spellCatalogue.pickRandom(),p2);
 });
 cast.addEventListener("click", (e) => {
     return queue.dequeue();
@@ -24,3 +28,5 @@ cast.addEventListener("click", (e) => {
 nextRound.addEventListener("click", () => {
     return board1.nextRound();
 });
+
+// effectCatalogue.Melt(p1)

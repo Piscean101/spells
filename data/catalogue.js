@@ -6,18 +6,12 @@ import { randomChoice } from './math.js';
 
 /* New spells 
 
-    SPEED
-    [Light: Heal +Speed] 
-
     OVERTIME
     [Fire: 'Wisps' Steal HoT]
     [Ice: 'Ice Out' -DoT +Mana]
     [Light: 'Triage' -Dot Absorb]
     [Dark: 'Foolish Greed' -HoT Drain]
     [Steel: '' Attack Block DoT]
-
-    Needed for 60 => i. Mana Ramp ii. Cheap AoE
-
 
 */
 
@@ -30,9 +24,11 @@ let DivineIntervention = new AoE(6,'Divine Intervention','Light',90,0,[[effectCa
 let Glimmers = new AoE(2,'Glimmers','Light',85,175);
 let Grindhouse = new AoE(3,'Grindhouse','Steel',80,265);
 let Hellraise = new AoE(6,'Hellraise','Fire',70,690,[[effectCatalogue.RemoveCharmAll,[]]],6);
+let Inspire = new AoE(1,'Inspire','Light',90,0,[[effectCatalogue.Heal,[180,3]],[effectCatalogue.Speed,[1]]],3);
 let Splendor = new AoE(3,'Splendor','Light',90,0,[[effectCatalogue.Heal,[420]]]);
 let WarCry = new AoE(3,'War Cry','Fire',75,0,[[effectCatalogue.Charm,['War Cry',300,'Damage',true]]]);
 let Wildfire = new AoE(2,'Wildfire','Fire',70,315,null,4);
+let WitchHunt = new AoE(3,'Witch Hunt','Fire',75,290,[[effectCatalogue.Melt,[]]],6);
 // OVER-TIMES
 let BrainFreeze = new Attack(5,'Brain Freeze','Ice',75,585,[[effectCatalogue.Stun,[2]]],3);
 let EnergyHelix = new Attack(2,'Energy Helix','Fire',75,0,[[effectCatalogue.Heal,[510,3]]],3);
@@ -49,6 +45,7 @@ let Firecracker = new Attack(2,'Firecracker','Fire',75,250,[[effectCatalogue.Spe
 let Frost = new Attack(0,'Frost','Ice',100,60);
 let Guillotine = new Attack(7,'Guillotine','Steel',75,895);
 let Corkscrew = new Attack(3,'Corkscrew','Steel',80,240,[[effectCatalogue.Ward,['Excruciate',100,'Damage']]]);
+let Horror = new Attack(4,'Horror','Dark',85,150,[[effectCatalogue.Charm,['Infection',-200,'Heal']],[effectCatalogue.Charm,['Shroud',-120,'Damage',true]],[effectCatalogue.Charm,['Paranoia',-1000,'Damage']]]);
 let Iceberg = new Attack(4,'Iceberg','Ice',80,350,[[effectCatalogue.DestroyMana,[1,'Siphon']]]);
 let Melancholy = new Attack(0,'Melancholy','Dark',100,65);
 let NeedlePunch = new Attack(5,'Needle Punch','Steel',80,540,[[effectCatalogue.Ward,['Pinpoint',75,'Damage']]]);
@@ -71,6 +68,7 @@ let Fury = new Instant(0,'Fury','Fire',75,[[effectCatalogue.Charm,['Fury',100,'D
 let Miasma = new Instant(1,'Miasma','Dark',100,[[effectCatalogue.Charm,['Miasma',-400,'Heal']]]);
 let Paranoia = new Instant(3,'Paranoia','Dark',85,[[effectCatalogue.Charm,['Paranoia',-1000,'Damage']]]);
 let Rage = new Instant(0,'Rage','Fire',50,[[effectCatalogue.Charm,['Rage',100,'Damage']],[effectCatalogue.AddMana,[2]]]);
+let Shroud = new Instant(1,'Shroud','Dark',85,[[effectCatalogue.Charm,['Shroud',-120,'Damage',true]]]);
 let Storm = new Instant(1,'Storm','Fire',75,[[effectCatalogue.Charm,['Storm',150,'Damage']],[effectCatalogue.Speed,[1]]]);
 let Weakness = new Instant(0,'Weakness','Ice',100,[[effectCatalogue.Charm,['Weakness',-75,'Damage']]]);
 // WARDS
@@ -91,6 +89,7 @@ let Freeze = new Instant(2,'Freeze','Ice',80,[[effectCatalogue.Stun,[2]]]);
 let Hibernate = new Instant(3,'Hibernate','Ice',80,[[effectCatalogue.Stun,[1]],[effectCatalogue.DestroyMana,[4]]]);
 let Indestructible = new Instant(2,'Indestructible','Steel',80,[[effectCatalogue.Indestructible,['Ward']]]);
 let Invoke = new Instant(3,'Invoke','Dark',85,[[effectCatalogue.RemoveWardAll,[]]]);
+let Melt = new Instant(2,'Melt','Fire',75,[[effectCatalogue.Melt,[]]]);
 let Overheat = new Instant(3,'Overheat','Fire',75,[[effectCatalogue.RemoveCharmAll,[]]]);
 let Shred = new Instant(2,'Shred','Steel',100,[[effectCatalogue.RemoveWard,[2]]]);
 let Snowdrift = new Instant(1,'Snow Drift','Ice',80,[[effectCatalogue.Speed,[-1,1]]]);
@@ -111,6 +110,7 @@ export let spellCatalogue = {
         Condemn,
         DarkPact,
         Excruciate,
+        Horror,
         Invoke,
         Melancholy,
         Miasma,
@@ -118,6 +118,7 @@ export let spellCatalogue = {
         Paranoia,
         Prey,
         Sacrifice,
+        Shroud,
         Temptation
     ],
     Fire: [
@@ -128,6 +129,7 @@ export let spellCatalogue = {
         Fury,
         Hellraise,
         Ignite,
+        Melt,
         Overheat,
         PhoenixSong,
         Rage,
@@ -135,7 +137,8 @@ export let spellCatalogue = {
         Storm,
         Thunderbolt,
         WarCry,
-        Wildfire
+        Wildfire,
+        WitchHunt
     ],
     Ice: [
         Avalanche,
@@ -161,6 +164,7 @@ export let spellCatalogue = {
         GuardianOfTheFae,
         HeroicEpic,
         HymnToTheAges,
+        Inspire,
         Rest,
         Retribution,
         Splendor,

@@ -6,7 +6,7 @@ import { boyName , girlName , lastName , RandomName } from "./name.js";
 // import { effectCatalogue } from "./effect.js";
 
 class Player {
-    constructor(name,element,hp = 1500,mana=0) {
+    constructor(name,element,hp = 5000,mana=0) {
         this.name = name; this.hp = hp; this.mana = mana; this.speed = 0; this.maxhp = hp; this.mates = [];
         this.hanging = {
             charms: [], damage: [], protection: [], stun: [], wards: []
