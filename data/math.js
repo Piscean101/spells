@@ -110,9 +110,9 @@ export function randomChoice(...args) {
 }
 
 export function randomNumber(max,...exclusions) {
-    let result = Math.ceil(Math.random()*max);
+    let result = Math.floor(Math.random()*max);
     while (exclusions.includes(result)) {
-        result = Math.ceil(Math.random()*max);
+        result = Math.floor(Math.random()*max);
     }
     return result;
 }

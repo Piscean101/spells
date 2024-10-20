@@ -111,9 +111,15 @@ export function damageCalculator(caster,target,spell) {
 
                         effectCatalogue.Heal(target,applyBuffs(e[1][1]*sacrifice,caster,target,['Heal'])[0]);
 
-                    } else if (e[0] == effectCatalogue.Self) {
+                    } else if (e[0] == effectCatalogue.SelfEnchant) {
 
                         e[0](caster,...e[1]);
+
+                    } else if (e[0] == effectCatalogue.Self) {
+
+                        caster[e[1]] += e[0];
+
+                        e[0] > 0 ? console.log('big') : console.log('smol');
 
                     } else {
 

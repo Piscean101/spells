@@ -222,6 +222,25 @@ let RemoveCharmAll = (target) => {
     return charms;
 }
 
+let RemoveOT = (target,n,type='Damage') => {
+
+    let ot;
+
+    type == 'Damage' ? ot = target.hanging.damage.filter(e => { return e[0][0] < 0 }) : ot = target.hanging.damage.filter(e => { return e[0][0] > 0 });
+
+    if(ot.length) {
+
+        for(let i = n; i > 0; i--) {
+
+            console.log(`Removed hanging effect { ${ot[0][1]} }`)
+            ot.splice(0,1);
+
+        } 
+
+    }
+
+};
+
 let RemoveWard = (target,n=1) => {
 
     let [wards,count] = [target.hanging.wards,0];
@@ -266,7 +285,13 @@ let Sacrifice = () => {
 
 }
 
-let Self = (target,name,e='wards',n=0,type='Damage',p=false,i=false,used=false) => {
+let Self = (target,n,e='acc') => {
+
+    return [e,n];
+
+}
+
+let SelfEnchant = (target,name,e='wards',n=0,type='Damage',p=false,i=false,used=false) => {
 
     e = e.toLowerCase();
 
@@ -276,27 +301,28 @@ let Self = (target,name,e='wards',n=0,type='Damage',p=false,i=false,used=false) 
 
 }
 
-let Speed = (target,n=1,siphon=0) => {
+let Stat = (target,n=1,siphon=0,stat='Speed') => {
 
     let result = 0;
 
-    if (isProtected(target,'Speed').length) {
+    if (isProtected(target, stat).length && n < 0) {
 
         console.log(`Stat reduction Blocked!`);
-        isProtected(target,'Speed').splice(0,1);
+        isProtected(target, stat).splice(0,1);
         
 
-    } else if (isProtected(target,'Stat').length) {
+    } else if (isProtected(target,'Stat').length && n < 0) {
     
         console.log(`Stat reduction Blocked!`);
         isProtected(target,'Stat').splice(0,1);
     
     } else {
 
-        n > 0 ? console.log(`Increased ${target.name}'s speed {+${Math.abs(n)}}`) :
-        n < 0 ? console.log(`Decreased ${target.name}'s speed {${n}}`) : null;
-        target.speed += n;
-        target.speed < 0 ? target.speed = 0 : null;
+        stat = stat.toLowerCase();
+        n > 0 ? console.log(`Increased ${target.name}'s ${stat} {+${Math.abs(n)}}`) :
+        n < 0 ? console.log(`Decreased ${target.name}'s ${stat} {${n}}`) : null;
+        target[stat] += n;
+        target[stat] < 0 ? target[stat] = 0 : null;
 
     }
 
@@ -374,11 +400,13 @@ export let effectCatalogue = {
     Protect: Protect,
     RemoveCharm: RemoveCharm,
     RemoveCharmAll: RemoveCharmAll,
+    RemoveOT: RemoveOT,
     RemoveWard: RemoveWard,
     RemoveWardAll: RemoveWardAll,
     Sacrifice: Sacrifice,
     Self: Self,
-    Speed: Speed,
+    SelfEnchant: SelfEnchant,
+    Stat: Stat,
     Stun: Stun,
     Ward: Ward
 }

@@ -1,8 +1,13 @@
 import { queue } from "./combat.js";
-// ATTACH QUEUE TO BOARD
-// IMPORT NAMES TO PLAYER AND DECLARE PLAYERS THERE 
+import { spellCatalogue } from "../data/catalogue.js";
+import { randomChoice } from "../data/math.js";
+
+///// ESTABLISH UNIQUE BOARDS WITH UNIQUE INITS CALL THE FIRST BOARD STANDARDBOARD
 ///// DIFFERENT GAME MODES VIA BOARD INIT
     /// i. Swap a random spell end of every round
+    /// ii. start 1 spell add random spell end of every round
+    /// iii. cycle a spell for 1 mana or your turn
+    //// iv. draw spell every round choose to cast spell on round or draw extra spell
 
 export class Board {
 
@@ -21,6 +26,8 @@ export class Board {
             manaLevel: manaLevel, manaGrowth: manaGrowth, round: 0,
 
         }
+
+        this.storage = []; this.holder;
 
         this.init = () => {
 
@@ -53,6 +60,20 @@ export class Board {
                 for (const p of t) {
 
                     p.mates.push(...t);
+
+                    for(let i = 0 ; i < 4 ; i++) {
+
+                        this.holder = spellCatalogue.pickRandom(1,p.element);
+
+                        this.storage.includes(this.holder) ? i-- : this.storage.push(this.holder);
+
+                    }
+
+                    p.spellbook = this.storage;
+
+                    this.storage = [];
+
+                    console.log(p.name,...p.spellbook)
 
                 }
 
