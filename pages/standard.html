@@ -5,22 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spells</title>
     <script type="module" src="../main.js"></script>
+    <link rel="stylesheet" href="../main.css">
 </head>
 <body>
 
-    <button id="queue">Queue</button>
-    <!-- HANDLE FIZZLE ON AOES WITH EXTRA EFFECTS -->
-    <button id="cast">Cast</button>
+    <section id="buttons">    
+        <button id="queue">Queue</button>
+        <!-- HANDLE FIZZLE ON AOES WITH EXTRA EFFECTS -->
+        <!-- <button id="cast">Cast</button> -->
+    
+        <button id="next">Next Round</button>
+    </section>
 
-    <button id="nextRound">Next Round</button>
+    <section id="teams">
 
-    <section id="players">
+        <div id="team1" class="team">
 
-        <div id="p1"></div>
-        <div id="p2"></div>
-        <div id="p3"></div>
-        <div id="p4"></div>
+            <div id="p1" class="player">
+                <div id="p1title" class="title"><img src="../data/images/2.png" class="avatar"/></div>
+                <div id="p1stats" class="stats"></div>
+                <div id="p1spells" class="spellbook"></div>
+            </div>
+            
+            <div id="p2" class="player">
+                <div id="p2title" class="title"><img src="../data/images/6.png" class="avatar"/></div>
+                <div id="p2stats" class="stats"></div>
+                <div id="p2spells" class="spellbook"></div>
+            </div>
 
+            <div id="p3" class="player">
+                <div id="p3title" class="title"><img src="../data/images/3.png" class="avatar"/></div>
+                <div id="p3stats" class="stats"></div>
+                <div id="p3spells" class="spellbook"></div>
+            </div>
+        </div>
+
+        <div id="team2" class="team">
+            <div id="p4" class="player">
+                <div id="p4title" class="title"><img src="../data/images/4.png" class="avatar"/></div>
+                <div id="p4stats" class="stats"></div>
+                <div id="p4spells" class="spellbook"></div>
+            </div>
+            <div id="p5" class="player">
+                <div id="p5title" class="title"><img src="../data/images/5.png" class="avatar"/></div>
+                <div id="p5stats" class="stats"></div>
+                <div id="p5spells" class="spellbook"></div>
+            </div>
+            <div id="p6" class="player">
+                <div id="p6title" class="title"><img src="../data/images/1.png" class="avatar"/></div>
+                <div id="p6stats" class="stats"></div>
+                <div id="p6spells" class="spellbook"></div>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="log">
+        <p id="console"></p>
     </section>
     
 </body>

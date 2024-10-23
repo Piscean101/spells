@@ -94,11 +94,15 @@ let DestroyMana = (target,n=1,siphon=false) => {
     
         }
     
-        console.log(`Destroyed ${result} mana in ${target.name}'s mana pool { Remaining: ${target.mana} }`);
+        // console.log(`Destroyed ${result} mana in ${target.name}'s mana pool { Remaining: ${target.mana} }`);
 
         if (siphon) {
 
-            console.log(`${result} mana added to caster's mana pool`);
+            console.log(`Siphoned ${result} mana from ${target.name}'s mana pool { Remaining: ${target.mana} }`);
+
+        } else {
+
+            console.log(`Destroyed ${result} mana in ${target.name}'s mana pool { Remaining: ${target.mana} }`);
 
         }
 
@@ -222,22 +226,23 @@ let RemoveCharmAll = (target) => {
     return charms;
 }
 
-let RemoveOT = (target,n,type='Damage') => {
+let RemoveOT = (target,n=1,type='Damage') => {
 
     let ot;
 
     type == 'Damage' ? ot = target.hanging.damage.filter(e => { return e[0][0] < 0 }) : ot = target.hanging.damage.filter(e => { return e[0][0] > 0 });
 
-    if(ot.length) {
 
-        for(let i = n; i > 0; i--) {
+    for(let i = n; i > 0; i--) {
+
+        if (ot.length) {
 
             console.log(`Removed hanging effect { ${ot[0][1]} }`)
-            ot.splice(0,1);
+            ot.shift();
 
-        } 
+        }
 
-    }
+    } 
 
 };
 
@@ -318,9 +323,10 @@ let Stat = (target,n=1,siphon=0,stat='Speed') => {
     
     } else {
 
-        stat = stat.toLowerCase();
-        n > 0 ? console.log(`Increased ${target.name}'s ${stat} {+${Math.abs(n)}}`) :
-        n < 0 ? console.log(`Decreased ${target.name}'s ${stat} {${n}}`) : null;
+        stat = stat.toUpperCase();
+        n > 0 ? console.log(`Increased ${target.name}'s stats { ${stat} +${Math.abs(n)}} `) :
+        n < 0 ? console.log(`${target.name}'s stats decreased { ${stat} ${n} }`) : null;
+        stat = stat.toLowerCase(); 
         target[stat] += n;
         target[stat] < 0 ? target[stat] = 0 : null;
 

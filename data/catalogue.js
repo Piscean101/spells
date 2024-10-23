@@ -18,20 +18,20 @@ import { randomChoice } from './math.js';
 // atk w multiple debuffs
 
 // AoE
-let BitterEnd = new AoE(6,'Bitter End','Dark',80,'Drain',[[effectCatalogue.Drain,[340,.5]],[effectCatalogue.Ward,['Excruciate',175,'Damage',true]]]);
+let BitterEnd = new AoE(6,'Bitter End','Dark',80,'Drain',[[effectCatalogue.Drain,[340,.5]],[effectCatalogue.DestroyMana,[1]]]);
 let BlackHole = new AoE(7,'Black Hole','Dark',85,340,[[effectCatalogue.Charm,['Miasma',-400,'Heal',true]],[effectCatalogue.Charm,['Paranoia',-1000,'Damage']]]);
 let Blizzard = new AoE(3,'Blizzard','Ice',80,280,[[effectCatalogue.Stat,[-2,0,'Acc']]],4);
 let ChainsawMassacre = new AoE(7,'Chainsaw Massacre','Steel',80,450,[[effectCatalogue.RemoveWard,[2]]]);
-let DivineIntervention = new AoE(6,'Divine Intervention','Light',90,0,[[effectCatalogue.Heal,[550]],[effectCatalogue.Ward,['Absorb',-500,'Damage']]]);
+let DivineIntervention = new AoE(5,'Divine Intervention','Light',90,0,[[effectCatalogue.Heal,[440]],[effectCatalogue.Ward,['Absorb',-500,'Damage']]]);
 let Glimmers = new AoE(2,'Glimmers','Light',85,175);
 let Grindhouse = new AoE(3,'Grindhouse','Steel',80,265);
 let Hellraise = new AoE(6,'Hellraise','Fire',70,690,[[effectCatalogue.RemoveCharmAll,[]]],6);
-let Inspire = new AoE(1,'Inspire','Light',90,0,[[effectCatalogue.Heal,[180,3]],[effectCatalogue.Stat,[2,0,'Acc']]],3);
+let Inspire = new AoE(1,'Inspire','Light',90,0,[[effectCatalogue.Heal,[180,3]],[effectCatalogue.Stat,[1,0,'Acc']]],3);
 let MegatonHammer = new AoE(6,'Megaton Hammer','Steel',75,510,[[effectCatalogue.Stun,[1]]]);
-let Splendor = new AoE(3,'Splendor','Light',90,0,[[effectCatalogue.Heal,[365]],[effectCatalogue.Stat,[1]]]);
+let Splendor = new AoE(3,'Splendor','Light',90,0,[[effectCatalogue.Heal,[420]]]);
 let WarCry = new AoE(3,'War Cry','Fire',75,0,[[effectCatalogue.Charm,['War Cry',250,'Damage',true]],[effectCatalogue.Stat,[1]]]);
 let Wildfire = new AoE(2,'Wildfire','Fire',70,315,null,4);
-let WitchHunt = new AoE(3,'Witch Hunt','Fire',75,290,[[effectCatalogue.Melt,[]]],6);
+let WitchHunt = new AoE(3,'Witch Hunt','Fire',75,300,[[effectCatalogue.Melt,[]]],6);
 // OVER-TIMES
 let BrainFreeze = new Attack(5,'Brain Freeze','Ice',75,585,[[effectCatalogue.Stun,[2]]],3);
 let EnergyHelix = new Attack(2,'Energy Helix','Fire',75,0,[[effectCatalogue.Heal,[480,5]],[effectCatalogue.Stat,[1]]],5);
@@ -42,17 +42,17 @@ let Nightmare = new Attack(5,'Nightmare','Dark',80,780,null,3);
 let PhoenixSong = new Instant(4,'Phoenix Song','Fire',75,[[effectCatalogue.Heal,[990,6]],[effectCatalogue.Charm,['Fury',125,'Damage']]],6);
 let SolarFlare = new Attack(4,'Solar Flare','Light',90,600,null,6);
 // ATTACKS
-let Avalanche = new Attack(6,'Avalanche','Ice',80,380,[[effectCatalogue.Stat,[-2]],[effectCatalogue.Charm,['Entomb',-250,'Damage',true]]]);
+let Avalanche = new Attack(6,'Avalanche','Ice',80,380,[[effectCatalogue.Stat,[-2]],[effectCatalogue.Charm,['Entomb',-300,'Damage',true]]]);
 let CombatBehemoth = new Attack(6,'Combat Behemoth','Steel',80,600,[[effectCatalogue.SelfEnchant,['Block','Protection']]]);
 let DarkPact = new Attack(5,'Dark Pact','Dark',85,'Drain',[[effectCatalogue.Drain,[350,.5]],[effectCatalogue.Charm,['Condemn',-300,'Heal',true]]]);
 let Firecracker = new Attack(2,'Firecracker','Fire',75,250,[[effectCatalogue.Stat,[0,1]]]);
-let Frostbite = new Attack(5,'Frostbite','Ice',80,485,[[effectCatalogue.Stat[-1]]]);
+let Frostbite = new Attack(5,'Frostbite','Ice',80,485,[[effectCatalogue.Stat,[-1]]]);
 let Guillotine = new Attack(7,'Guillotine','Steel',75,895);
-let Corkscrew = new Attack(3,'Corkscrew','Steel',80,240,[[effectCatalogue.Ward,['Excruciate',150,'Damage']]]);
+let Corkscrew = new Attack(3,'Corkscrew','Steel',80,240,[[effectCatalogue.Ward,['Excruciate',100,'Damage',true]]]);
 let Horror = new Attack(4,'Horror','Dark',85,150,[[effectCatalogue.Charm,['Infection',-200,'Heal']],[effectCatalogue.Stat,[-5,0,'Acc']],[effectCatalogue.Charm,['Paranoia',-1000,'Damage']]]);
 let Iceberg = new Attack(4,'Iceberg','Ice',80,350,[[effectCatalogue.DestroyMana,[1,'Siphon']]]);
-let Melancholy = new Attack(2,'Melancholy','Dark',85,210,[[effectCatalogue.DestroyMana,[1]]]);
-let NeedlePunch = new Attack(5,'Needle Punch','Steel',80,540,[[effectCatalogue.Ward,['Pinpoint',120,'Damage']],[effectCatalogue.Stat,[0,1,'Acc']]]);
+let Melancholy = new Attack(2,'Melancholy','Dark',85,210,[[effectCatalogue.RemoveOT,[1,'Heal']]]);
+let NeedlePunch = new Attack(5,'Needle Punch','Steel',80,540,[[effectCatalogue.Ward,['Pinpoint',120,'Damage']],[effectCatalogue.Stat,[0,2,'Acc']]]);
 let Prey = new Attack(2,'Prey','Dark',85,'Drain',[[effectCatalogue.Drain,[160,.75]]]);
 let Retribution = new Attack(5,'Retribution','Light',85,485);
 let Slash = new Attack(0,'Slash','Steel',100,70);
@@ -61,29 +61,29 @@ let Static = new Attack(1,'Static','Light',90,100,[[effectCatalogue.Stat,[-1]]])
 let Thunderbolt = new Attack(4,'Thunderbolt','Fire',75,540);
 // HEALS
 let MiracleSentinel = new Heal(4,'Miracle Sentinel','Steel',80,[[effectCatalogue.Heal,[450]],[effectCatalogue.Indestructible,['Ward']]]);
-let Rest = new Heal(4,'Rest','Light',100,[[effectCatalogue.Heal,[1000]],[effectCatalogue.Stun,[1]],[effectCatalogue.Stat,[-1]]]);
+let Rest = new Heal(4,'Rest','Light',100,[[effectCatalogue.Heal,[1000]],[effectCatalogue.Stun,[2]],[effectCatalogue.RemoveOT,[2,'Damage']]]);
 let Sunshine = new Heal(4,'Sunshine','Light',85,[[effectCatalogue.Heal,[820]]]);
 let Sacrifice = new Heal(3,'Sacrifice','Dark',85,[[effectCatalogue.Sacrifice,[400,1.95]]]); 
 // CHARMS
-let Condemn = new Instant(2,'Condemn','Dark',85,[[effectCatalogue.Charm,['Condemn',-300,'Heal',true]]]);
+let Condemn = new Instant(2,'Condemn','Dark',85,[[effectCatalogue.Charm,['Condemn',-250,'Heal',true]]]);
 let Entomb = new Instant(3,'Entomb','Ice',80,[[effectCatalogue.Charm,['Entomb',-250,'Damage',true]]]);
-let Frenzy = new Instant(3,'Frenzy','Fire',75,[[effectCatalogue.Charm,['Frenzy',100,'Damage',true]],[effectCatalogue.Charm,['Frenzy',500,'Damage']]]);
-let Fury = new Instant(0,'Fury','Fire',75,[[effectCatalogue.Charm,['Fury',100,'Damage']]]);
-let Miasma = new Instant(1,'Miasma','Dark',85,[[effectCatalogue.Charm,['Miasma',-400,'Heal']]]);
+let Frenzy = new Instant(3,'Frenzy','Fire',75,[[effectCatalogue.Charm,['Frenzy',50,'Damage',true]],[effectCatalogue.Charm,['Frenzy',450,'Damage']]]);
+let Fury = new Instant(0,'Fury','Fire',75,[[effectCatalogue.Charm,['Fury',75,'Damage']]]);
+let Miasma = new Instant(1,'Miasma','Dark',85,[[effectCatalogue.Charm,['Miasma',-300,'Heal']]]);
 let Paranoia = new Instant(3,'Paranoia','Dark',85,[[effectCatalogue.Charm,['Paranoia',-1000,'Damage']]]);
 let Rage = new Instant(0,'Rage','Fire',50,[[effectCatalogue.Charm,['Rage',100,'Damage']],[effectCatalogue.AddMana,[2]]]);
-let Shroud = new Instant(1,'Shroud','Dark',85,[[effectCatalogue.Charm,['Weakness',-75,'Damage',true]],[effectCatalogue.Stat,[-3,0,'Acc']]]);
-let Storm = new Instant(1,'Storm','Fire',75,[[effectCatalogue.Charm,['Storm',150,'Damage']],[effectCatalogue.Stat,[3,0,'Acc']]]);
-let Weakness = new Instant(0,'Weakness','Ice',100,[[effectCatalogue.Charm,['Weakness',-50,'Damage']]]);
+let Shroud = new Instant(1,'Shroud','Dark',85,[[effectCatalogue.Charm,['Weakness',-75,'Damage',true]],[effectCatalogue.Stat,[-2,0,'Acc']]]);
+let Storm = new Instant(1,'Storm','Fire',75,[[effectCatalogue.Charm,['Storm',125,'Damage']],[effectCatalogue.Stat,[2,0,'Acc']]]);
+let Weakness = new Instant(0,'Weakness','Ice',100,[[effectCatalogue.Charm,['Weakness',-75,'Damage']]]);
 // WARDS
-let Absorb = new Instant(0,'Absorb','Light',100,[[effectCatalogue.Ward,['Absorb',-75,'Damage']]]);
+let Absorb = new Instant(0,'Absorb','Light',100,[[effectCatalogue.Ward,['Absorb',-100,'Damage']]]);
 let BraceForImpact = new Instant(2,'Brace For Impact','Steel',100,[[effectCatalogue.Ward,['Absorb',-175,'Damage',true]],[effectCatalogue.Stat,[-1]]]);
-let Excruciate = new Instant(1,'Excruciate','Dark',85,[[effectCatalogue.Ward,['Excruciate',150,'Damage',true]]]);
+let Excruciate = new Instant(1,'Excruciate','Dark',85,[[effectCatalogue.Ward,['Excruciate',100,'Damage',true]]]);
 let Fortress = new Instant(3,'Fortress','Steel',100,[[effectCatalogue.Ward,['Absorb',-200,'Damage',true,true]]]);
 let GuardianOfTheFae = new Instant(4,'Guardian Of The Fae','Light',90,[[effectCatalogue.Ward,['Absorb',-600,'Damage']],[effectCatalogue.RemoveCharm,[1]]]);
-let HeroicEpic = new Instant(3,'Heroic Epic','Light',90,[[effectCatalogue.Indestructible,['Ward']],[effectCatalogue.Ward,['Heroic Epic',200,'Heal',true]]]);
+let HeroicEpic = new Instant(3,'Heroic Epic','Light',90,[[effectCatalogue.Indestructible,['Ward']],[effectCatalogue.Ward,['Heroic Epic',150,'Heal',true]]]);
 let Juggernaut = new Instant(3,'Juggernaut','Ice',80,[[effectCatalogue.Protect,['Block','DoT']],[effectCatalogue.Protect,['Block','DoT']],[effectCatalogue.Protect,['Block','DoT']]]);
-let Pinpoint = new Instant(0,'Pinpoint','Steel',100,[[effectCatalogue.Ward,['Pinpoint',100,'Damage']],[effectCatalogue.Stat,[0,1,'Acc']]]);
+let Pinpoint = new Instant(0,'Pinpoint','Steel',100,[[effectCatalogue.Ward,['Pinpoint',75,'Damage']],[effectCatalogue.Stat,[0,1,'Acc']]]);
 // INSTANTS
 let Block = new Instant(1,'Block','Steel',80,[[effectCatalogue.Protect,['Block','DoT']]]);
 let Cooldown = new Instant(1,'Cooldown','Ice',80,[[effectCatalogue.RemoveOT,[1,'Damage']]]);
@@ -103,7 +103,7 @@ let Stargaze = new Instant(2,'Stargaze','Light',90,[[effectCatalogue.AddMana,[3]
 let Stun = new Instant(0,'Stun','Ice',80,[[effectCatalogue.Stun,[1]]]);
 let StunBlock = new Instant(1,'Stun Block','Ice',100,[[effectCatalogue.Protect,['Stun Block','Stun']],[effectCatalogue.Protect,['Stun Block','Stun']]]);
 let Temptation = new Instant(0,'Temptation','Dark',100,[[effectCatalogue.AddMana,[2]],[effectCatalogue.Stat,[-1]]]);
-let Triage = new Instant(3,'Triage','Light',90,[[effectCatalogue.RemoveOT,[2,'Damage']],[effectCatalogue.Ward,['Absorb',-150,'Damage']]]); 
+let Triage = new Instant(3,'Triage','Light',90,[[effectCatalogue.RemoveOT,[2,'Damage']],[effectCatalogue.Ward,['Absorb',-50,'Damage']]]); 
 
 EnergyHelix.ot = true; PhoenixSong.ot = true;
 
@@ -278,7 +278,7 @@ export let spellCatalogue = {
 
 };
 
-spellCatalogue.checkCatalogue();
+// spellCatalogue.checkCatalogue();
 
 // console.log(spellCatalogue.pickRandom(1,'Fire'));
 

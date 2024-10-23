@@ -7,24 +7,24 @@ import { accuracy } from "./math.js";
 
 class Player {
     constructor(name,element,hp = 5000,mana=0) {
-        this.name = name; this.element = element; this.hp = hp; this.mana = mana; this.speed = 0; this.mates = []; this.acc = 30;
+        this.name = name; this.element = element; this.hp = hp; this.mana = mana; this.speed = 0; this.mates = []; this.acc = 50;
         this.hanging = {
             charms: [], damage: [], protection: [], stun: [], wards: []
         }
         this.spellbook = [];
         switch(this.element) {
             case 'Fire':
-                this.hp = 1250;
+                this.hp = 2000;
                 break;
             case 'Ice':
-                this.hp = 1500;
+                this.hp = 2750;
                 break;
             case 'Light':
-                this.hp = 1400;
+                this.hp = 2500;
                 break;
             case 'Dark':
             case 'Steel':
-                this.hp = 1300;
+                this.hp = 2250;
                 break;
         }
         this.maxhp = this.hp;
@@ -44,22 +44,17 @@ class Player {
 
         if (this.hanging.stun.length) {
 
-            console.log(`\n >>${this.name} cannot move!`);
+            console.log(`<p class="stunned log">>>${this.name} cannot move!</p>`);
             this.hanging.stun.splice(0,1);
 
         } else {
 
             if (spell) {
                 
-                spell.aoe ? console.log(`\n %c ${this.name} cast ${spell.title}`,'color:green;font-size:18px;font-weight:bold') : 
-                spell.aoe === false ? console.log(`\n %c ${this.name} cast ${spell.title} on ${target.name}`,'color:green;font-size:15px;font-weight:bold') : null;
+                spell.aoe ? console.log(`<p class="casting log"><img src="../data/images/q.png" height="10px"/><img src="../data/images/q.png" height="10px"/> ${this.name} cast ${spell.title}</p>`) : 
+                spell.aoe === false ? console.log(`<p class="casting"><img src="../data/images/q.png" height="10px"/><img src="../data/images/q.png" height="10px"/> ${this.name} cast ${spell.title} on ${target.name}</p>`) : null;
                 
-                if(accuracy(spell.accuracy + this.acc)) {
-
-                    damageCalculator(this,target,spell) === true ? this.mana -= spell.cost : null;
-
-                } else { console.log(`%c Fizzle...`,'font-size: 10px') }
-                
+                damageCalculator(this,target,spell) === true ? this.mana -= spell.cost : null;
             
             };
             
@@ -90,7 +85,7 @@ let team2 = {
     p4
 }
 
-let board1 = new Board(3,2,...Object.values(team1),...Object.values(team2));
+let board1 = new Board(5,1,...Object.values(team1),...Object.values(team2));
 // p1.name += 'p1';p2.name += 'p2';p3.name += 'p3';p4.name += 'p4';p5.name += 'p5';p6.name += 'p6';
 let t1 = board1.teams.team1; let t2 = board1.teams.team2;
 

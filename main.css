@@ -1,0 +1,119 @@
+.avatar {
+    position: absolute;
+    height: 60%;
+    left: 1%;
+}
+
+/* .avatar { left: 1%; } */
+
+body { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+#buttons {
+    position: absolute;
+    bottom: 10%;
+    z-index: 100;
+}
+
+.casting {
+    background-color: white;
+}
+
+.log {
+    font-size: 15px;
+    position: absolute;
+    padding: 2px;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+
+#console {
+    position: relative;
+    margin: 0;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+#log {
+    height: 100vh;
+    width: 25vw;
+    box-sizing: border-box;
+    background-color: green;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column-reverse;
+    font-size: 80%;
+    font-weight: bold;
+    font-family: consolas;
+}
+
+.nametag {
+    position: absolute;
+    left: 45%;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#nextRound {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player {
+    border: 4px inset black;
+    border-radius: 100px;
+    padding: 10px 50px;
+    margin: 50px;
+    position: relative;
+}
+
+.stats {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+}
+
+.statimg {
+    height: 20px;
+}
+
+.stunned {
+    background-color: blue;
+}
+
+#teams {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.team {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.team {
+    height: 100vh;
+    width: 37.5vw;
+    position: relative;
+    left: 0;
+    box-sizing: border-box;
+}
+#team1 {
+    border: 4px inset red;
+    background-color: lightcoral;
+}
+
+#team2 {
+    border: 4px inset blue;
+    background-color: lightskyblue;
+}

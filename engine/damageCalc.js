@@ -57,7 +57,7 @@ export function damageCalculator(caster,target,spell) {
 
             outgoing = applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(25);
 
-            spell.effect ? healOut = applyBuffs(spell.effect[0][1][0],caster,target,spell.types)[0] + damageRoll(15) : 
+            !spell.effect ? null : spell.effect[0][1][0] ? healOut = applyBuffs(spell.effect[0][1][0],caster,target,spell.types)[0] + damageRoll(15) : 
             applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(15);
     
             outgoing < 0 ? outgoing = 0 : null;

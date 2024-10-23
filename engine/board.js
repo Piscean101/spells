@@ -31,7 +31,7 @@ export class Board {
 
         this.init = () => {
 
-            let i = 0;
+            let i = 0; this.settings.round++;
 
             for (const player of players) {
 
@@ -83,8 +83,6 @@ export class Board {
 
         this.init();
 
-        this.nextRound();
-
     }
 
     addManaAll(n) {
@@ -114,15 +112,15 @@ export class Board {
     
     nextRound(mana=this.settings.manaGrowth) {
 
+        console.log(`<p id="nextRound">*************** ROUND ${this.settings.round} ***************</p>`);
+        
+        this.upkeep(mana);
+
         queue.dequeue();
 
         this.gameStatus();
 
-        this.upkeep(mana);
-
-        console.log(`\n *************** ROUND ${this.settings.round} *************** \n`);
-
-        this.showTeams();
+        // this.showTeams();
 
     }
 
@@ -152,7 +150,7 @@ export class Board {
 
                 tm.hp += n;
 
-                n > 0 ? console.log(`\n >>${tm.name} Restored {${n}} health`) : console.log(`\n >>${tm.name} Damaged by { ${e[1]} } {${-n}}`);
+                n > 0 ? console.log(`\n >${tm.name} Restored {${n}} health`) : console.log(`\n >${tm.name} Damaged by { ${e[1]} } {${-n}}`);
 
                 tm.hp > tm.maxhp ? tm.hp = tm.maxhp : null;
 
