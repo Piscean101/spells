@@ -14,7 +14,7 @@ export let queue = {
                     
                 } 
 
-                e[2].hp < 0 ? console.log(`\n ${e[2].name} was defeated`) : null ;
+                e[2].hp < 0 ? console.log(`<p class="defeat">${e[2].name} was defeated</p>`) : null ;
                 
             });
 

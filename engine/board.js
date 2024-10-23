@@ -31,19 +31,17 @@ export class Board {
 
         this.init = () => {
 
-            let i = 0; this.settings.round++;
+            this.settings.round++;
 
             for (const player of players) {
 
-                if (i == 0) {
+                if (this.teams.team1.length <= 3) {
 
                     this.teams.team1.push(player);
-                    i = 1;
 
                 } else {
 
                     this.teams.team2.push(player);
-                    i = 0;
 
                 }
 
@@ -61,7 +59,7 @@ export class Board {
 
                     p.mates.push(...t);
 
-                    for(let i = 0 ; i < 4 ; i++) {
+                    for(let i = 0 ; i < 5 ; i++) {
 
                         this.holder = spellCatalogue.pickRandom(1,p.element);
 

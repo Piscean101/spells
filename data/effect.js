@@ -324,7 +324,7 @@ let Stat = (target,n=1,siphon=0,stat='Speed') => {
     } else {
 
         stat = stat.toUpperCase();
-        n > 0 ? console.log(`Increased ${target.name}'s stats { ${stat} +${Math.abs(n)}} `) :
+        n > 0 ? console.log(`Increased ${target.name}'s stats { ${stat} +${Math.abs(n)} } `) :
         n < 0 ? console.log(`${target.name}'s stats decreased { ${stat} ${n} }`) : null;
         stat = stat.toLowerCase(); 
         target[stat] += n;

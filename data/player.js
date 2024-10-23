@@ -7,7 +7,7 @@ import { accuracy } from "./math.js";
 
 class Player {
     constructor(name,element,hp = 5000,mana=0) {
-        this.name = name; this.element = element; this.hp = hp; this.mana = mana; this.speed = 0; this.mates = []; this.acc = 50;
+        this.name = name; this.element = element; this.hp = hp; this.mana = mana; this.speed = 1; this.mates = []; this.acc = 0;
         this.hanging = {
             charms: [], damage: [], protection: [], stun: [], wards: []
         }
@@ -15,16 +15,23 @@ class Player {
         switch(this.element) {
             case 'Fire':
                 this.hp = 2000;
+                this.speed = 2;
                 break;
             case 'Ice':
-                this.hp = 2750;
+                this.hp = 2500;
+                this.speed = 1;
                 break;
             case 'Light':
-                this.hp = 2500;
+                this.hp = 2300;
+                this.speed = 1;
                 break;
             case 'Dark':
+                this.hp = 2000;
+                this.speed = 1;
+                break;
             case 'Steel':
-                this.hp = 2250;
+                this.hp = 2200;
+                this.speed = 0;
                 break;
         }
         this.maxhp = this.hp;
@@ -44,7 +51,7 @@ class Player {
 
         if (this.hanging.stun.length) {
 
-            console.log(`<p class="stunned log">>>${this.name} cannot move!</p>`);
+            console.log(`<p class="stunned log"> >>${this.name} cannot move!</p>`);
             this.hanging.stun.splice(0,1);
 
         } else {
@@ -52,7 +59,7 @@ class Player {
             if (spell) {
                 
                 spell.aoe ? console.log(`<p class="casting log"><img src="../data/images/q.png" height="10px"/><img src="../data/images/q.png" height="10px"/> ${this.name} cast ${spell.title}</p>`) : 
-                spell.aoe === false ? console.log(`<p class="casting"><img src="../data/images/q.png" height="10px"/><img src="../data/images/q.png" height="10px"/> ${this.name} cast ${spell.title} on ${target.name}</p>`) : null;
+                spell.aoe === false ? console.log(`<p class="casting log"><img src="../data/images/q.png" height="10px"/><img src="../data/images/q.png" height="10px"/> ${this.name} cast ${spell.title} on ${target.name}</p>`) : null;
                 
                 damageCalculator(this,target,spell) === true ? this.mana -= spell.cost : null;
             
@@ -67,9 +74,9 @@ class Player {
 }
 
 let p1 = new Player(RandomName(),'Fire');
-let p2 = new Player(RandomName(),'Ice');
+let p2 = new Player(RandomName(),'Steel');
 let p3 = new Player(RandomName(),'Dark');
-let p4 = new Player(RandomName(),'Steel');
+let p4 = new Player(RandomName(),'Ice');
 let p5 = new Player(RandomName(),'Light');
 let p6 = new Player(RandomName(),'Fire');
 

@@ -35,42 +35,85 @@ queue1.addEventListener("click", (e) => {
 // });
 nextRound.addEventListener("click", () => {
     board1.nextRound();
-    return go();
+    return refresh();
 });
 
-const refresh = () => {
-    // PLAYER 1
-    pl1.innerHTML = Object.entries(p1);
-    // PLAYER 1
-    pl2.innerHTML = Object.entries(p2);
-    // PLAYER 1
-    pl3.innerHTML = Object.entries(p3);
-    // PLAYER 1
-    pl4.innerHTML = Object.entries(p4);
-    // PLAYER 1
-    pl5.innerHTML = Object.entries(p5);
-    // PLAYER 1
-    pl6.innerHTML = Object.entries(p6);
+const go = () => {
+
+    let [hpimg,mpimg,speimg,accimg] = ['<img src="../data/images/hp.png" class="statimg"/>',`<img src="../data/images/mp.png" class="statimg"/>`,`<img src="../data/images/spe.png" class="statimg"/>`,`<img src="../data/images/acc.png" class="statimg"/>`];
+
+    for (let i = 1; i <= 3; i++) {
+
+        let target = board1.teams.roster[i-1];
+    
+        document.getElementById(`p${i}title`).innerHTML += `<p class="nametag">${target.name}</p><img src="../data/images/${target.element}.png" class="elementIcon"/>`;
+    
+        document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${mpimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc}`;
+    
+        for (let j = 0; j < 5; j++) {
+    
+            let spell = target.spellbook[j];
+    
+            document.getElementById(`p${i}spells`).innerHTML += `<button class="spellbtn ${spell.element} noenemy">${spell.title}</button>`;
+    
+        }
+
+        document.getElementById(`p${i}spells`).innerHTML += `<button class="pass">Pass</button>`;
+    
+        // console.log(target);
+    
+    }
+    
+    for (let i = 4; i <= 6; i++) {
+    
+        let target = board1.teams.roster[i-1];
+    
+        document.getElementById(`p${i}title`).innerHTML += `<p class="nametag">${target.name}</p><img src="../data/images/${target.element}.png" class="elementIcon"/>`;
+    
+        document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${mpimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc}`;
+    
+        for (let j = 0; j < 5; j++) {
+    
+            let spell = target.spellbook[j];
+    
+            document.getElementById(`p${i}spells`).innerHTML += `<p class="spellbtn ${spell.element} enemy">${spell.title}</p>`;
+    
+        }
+    
+    
+        // console.log(target);
+    
+    }
 
 }
 
 
 // refresh();
 
-let go = () => {
-for (let i = 1; i <= 6; i++) {
+const refresh = () => {
+
+    let [hpimg,mpimg,speimg,accimg] = ['<img src="../data/images/hp.png" class="statimg"/>',`<img src="../data/images/mp.png" class="statimg"/>`,`<img src="../data/images/spe.png" class="statimg"/>`,`<img src="../data/images/acc.png" class="statimg"/>`];
+
+for (let i = 1; i <= 3; i++) {
 
     let target = board1.teams.roster[i-1];
 
-    let hpimg = '<img src="../data/images/hp.png" class="statimg"/>';
+    document.getElementById(`p${i}title`).innerHTML += `<p class="nametag">${target.name} </p><img src="../data/images/${target.element}.png" class="elementIcon"/>`;
 
-    document.getElementById(`p${i}title`).innerHTML += `<p class="nametag">${target.name}</p>`
-
-    document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} MP ${target.mana} <br> SPE ${target.speed} ACC ${target.acc}`;
-
-    // console.log(target);
+    document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${manaimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc}`;
 
 }
+
+for (let i = 4; i <= 6; i++) {
+
+    let target = board1.teams.roster[i-1];
+
+    document.getElementById(`p${i}title`).innerHTML += `<p class="nametag">${target.name} { ${target.element} }</p>`;
+
+    document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${manaimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc}`;
+
+}
+
 }
 
 go();

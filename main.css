@@ -1,3 +1,12 @@
+.log {
+    font-size: 15px;
+    position: absolute;
+    padding: 2px;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+
 .avatar {
     position: absolute;
     height: 60%;
@@ -25,20 +34,27 @@ body {
     background-color: white;
 }
 
-.log {
+/* .log {
     font-size: 15px;
     position: absolute;
     padding: 2px;
     left: 0;
     right: 0;
     margin: 0;
-}
+} */
 
 #console {
     position: relative;
     margin: 0;
     box-sizing: border-box;
     padding: 10px;
+}
+
+.elementIcon {
+    height: 50px;
+    position: absolute;
+    left: 5px;
+    z-index: 1;
 }
 
 #log {
@@ -52,6 +68,7 @@ body {
     font-size: 80%;
     font-weight: bold;
     font-family: consolas;
+    padding-bottom: 20px;
 }
 
 .nametag {
@@ -67,12 +84,63 @@ body {
     align-items: center;
 }
 
+.pass {
+    position: absolute;
+    bottom: -100%;
+    color: white;
+    background-color: blue;
+    font-weight: bold;
+}
+
+.pass:hover {
+    cursor: pointer;
+}
+
 .player {
     border: 4px inset black;
     border-radius: 100px;
     padding: 10px 50px;
     margin: 50px;
     position: relative;
+    background-color: rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 5px black;
+}
+
+.spellbook {
+
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    width: 120%;
+    left: -10%;
+    bottom: -75%;
+
+}
+
+.spellbtn {
+
+    border-radius: 20px;
+    position: relative;
+    padding: 4px 6px;
+    /* font-weight: bold; */
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 1px;
+    margin: 0px 2px;
+    box-sizing: border-box;
+    transition: box-shadow 150ms ease;
+    font-size: 90%;
+
+}
+
+.spellbtn.noenemy:hover {
+    /* border: 1px solid white; */
+    box-shadow: 0px 0px 5px white inset;
+    cursor: pointer;
+}
+
+.spellbtn.noenemy:hover:active {
+    box-shadow: 0px 0px 5px black inset;
 }
 
 .stats {
@@ -82,6 +150,13 @@ body {
 
 .statimg {
     height: 20px;
+    width: 20px;
+    background-color: rgba(128, 128, 128, 0.2);
+    border-radius: 100%;
+    box-shadow: 0px 0px 5px black inset;
+    border: 1px solid white;
+    z-index: 2;
+    position: relative;
 }
 
 .stunned {
@@ -109,11 +184,45 @@ body {
     box-sizing: border-box;
 }
 #team1 {
-    border: 4px inset red;
+    /* border: 4px inset red; */
     background-color: lightcoral;
 }
 
 #team2 {
     border: 4px inset blue;
     background-color: lightskyblue;
+}
+
+
+
+
+
+
+
+.Fire {
+    background-color: red;
+    border: 2px inset red;
+}
+.Ice {
+    background-color: lightblue;
+    border: 2px inset lightblue;
+}
+.Dark {
+    background-color: Purple;
+    border: 2px inset purple;
+}
+.Steel {
+    background-color: grey;
+    border: 2px inset grey;
+}
+.Light {
+    background-color: beige;
+    border: 2px inset beige;
+}
+.enemy {
+    opacity: .4;
+    border: none;
+}
+.enemy:hover {
+    cursor: auto;
 }
