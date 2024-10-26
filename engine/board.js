@@ -35,7 +35,7 @@ export class Board {
 
             for (const player of players) {
 
-                if (this.teams.team1.length <= 3) {
+                if (this.teams.team1.length < 3) {
 
                     this.teams.team1.push(player);
 
@@ -124,7 +124,10 @@ export class Board {
 
     showTeams() {
 
-        console.log(...this.teams.roster)
+        this.teams.roster.forEach(e => {
+             console.log(e.name);
+             console.log(e.hanging)
+        })
 
     }
 
@@ -138,7 +141,7 @@ export class Board {
             
             tm.hanging.wards = tm.hanging.wards.filter(e => { return e.used == false });
 
-            tm.hanging.protection = tm.hanging.protection.filter(e => { return e.used == false });
+            // tm.hanging.protection = tm.hanging.protection.filter(e => { return e.used == false });
 
             tm.hanging.damage = tm.hanging.damage.filter(e => { return e[0].length });
 

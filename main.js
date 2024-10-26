@@ -29,10 +29,6 @@ queue1.addEventListener("click", (e) => {
     p5.cast(randomNumber(3),p1);
     p6.cast(randomNumber(3),p2);
 });
-// cast.addEventListener("click", (e) => {
-//     queue.dequeue();
-//     return;
-// });
 nextRound.addEventListener("click", () => {
     board1.nextRound();
     return refresh();
@@ -54,13 +50,11 @@ const go = () => {
     
             let spell = target.spellbook[j];
     
-            document.getElementById(`p${i}spells`).innerHTML += `<button class="spellbtn ${spell.element} noenemy">${spell.title}</button>`;
+            document.getElementById(`p${i}spells`).innerHTML += `<button class="spellbtn ${spell.element} noenemy" title="${spell.tooltip()}">${spell.title}</button>`;
     
         }
 
         document.getElementById(`p${i}spells`).innerHTML += `<button class="pass">Pass</button>`;
-    
-        // console.log(target);
     
     }
     
@@ -76,31 +70,23 @@ const go = () => {
     
             let spell = target.spellbook[j];
     
-            document.getElementById(`p${i}spells`).innerHTML += `<p class="spellbtn ${spell.element} enemy">${spell.title}</p>`;
+            document.getElementById(`p${i}spells`).innerHTML += `<p class="spellbtn ${spell.element} enemy" title="${spell.tooltip()}">${spell.title}</p>`;
     
         }
-    
-    
-        // console.log(target);
     
     }
 
 }
 
-
-// refresh();
-
 const refresh = () => {
 
-    let [hpimg,mpimg,speimg,accimg] = ['<img src="../data/images/hp.png" class="statimg"/>',`<img src="../data/images/mp.png" class="statimg"/>`,`<img src="../data/images/spe.png" class="statimg"/>`,`<img src="../data/images/acc.png" class="statimg"/>`];
+    let [hpimg,mpimg,speimg,accimg] = ['<img src="../data/images/hp.png" class="statimg" title="Health"/>',`<img src="../data/images/mp.png" class="statimg"/>`,`<img src="../data/images/spe.png" class="statimg"/>`,`<img src="../data/images/acc.png" class="statimg"/>`];
 
 for (let i = 1; i <= 3; i++) {
 
     let target = board1.teams.roster[i-1];
 
-    document.getElementById(`p${i}title`).innerHTML += `<p class="nametag">${target.name} </p><img src="../data/images/${target.element}.png" class="elementIcon"/>`;
-
-    document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${manaimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc}`;
+    document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${mpimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc}`;
 
 }
 
@@ -108,9 +94,7 @@ for (let i = 4; i <= 6; i++) {
 
     let target = board1.teams.roster[i-1];
 
-    document.getElementById(`p${i}title`).innerHTML += `<p class="nametag">${target.name} { ${target.element} }</p>`;
-
-    document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${manaimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc}`;
+    document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${mpimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc}`;
 
 }
 

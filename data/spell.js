@@ -10,9 +10,19 @@ export class Spell {
         this.accuracy = accuracy;
         this.effect = effect;
         this.types = [];
+        !this.effect ? null : this.effect.forEach(e => {
+            e[0] == effectCatalogue.Heal ? this.types.push('Heal') : 
+            e[0] == effectCatalogue.Charm && !this.types.includes('Charm') ? this.types.push(`{${e[1][1]}} ${e[1][2]}-Charm`) :
+            e[0] == effectCatalogue.Ward && !this.types.includes('Wards') ? this.types.push(`{${e[1][1]}} ${e[1][2]}-Ward`) : 
+            !this.types.includes('Effect') ? this.types.push('Effect') : null;
+        })
         this.ot = ot;
     }
-
+    
+    tooltip() {
+        return `ACCURACY: ${this.accuracy} COST: ${this.cost} \n${this.types.length > 1 ? this.types.join(' \u2022 ') : this.types}`;
+    } 
+    
 }
 
 export class Attack extends Spell {
@@ -21,8 +31,9 @@ export class Attack extends Spell {
         super(cost,title,element,accuracy,effect)
         this.power = power;
         this.ot = ot;
-        this.power ? this.types.push('Damage') : this.types.push('Heal');
+        this.ot ? this.types.push('OverTime') : this.types.push('Damage');
     }
+
 }
 
 
@@ -42,7 +53,6 @@ export class Instant extends Spell {
     
     constructor(cost,title,element,accuracy,effect) {
         super(cost,title,element,accuracy,effect) 
-        this.types.push('Instant');
     }
     
 }

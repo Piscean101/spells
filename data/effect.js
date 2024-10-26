@@ -178,11 +178,11 @@ let Melt = (target,type='charms') => {
 
 }
 
-let Protect = (target,name,type='Stun',p=false,i=false) => {
+let Protect = (target,name,type='Stun',p=false,i=false,used=false) => {
 
     let protection = target.hanging.protection;
 
-    protection.push({ name:name , type: type , permanent: p , indestructible: i });
+    protection.push({ name:name , type: type , permanent: p , indestructible: i , u: used });
 
     console.log(`Added ${name} to ${target.name}`);
 
@@ -296,7 +296,7 @@ let Self = (target,n,e='acc') => {
 
 }
 
-let SelfEnchant = (target,name,e='wards',n=0,type='Damage',p=false,i=false,used=false) => {
+let SelfEnchant = (target,name,e='wards',type='Damage',n=0,p=false,i=false,used=false) => {
 
     e = e.toLowerCase();
 
@@ -340,10 +340,13 @@ let Stat = (target,n=1,siphon=0,stat='Speed') => {
 
 let Stun = (target,n) => {
 
+    console.log(isProtected(target,'Stun'));
+    console.log(target.hanging.protection);
+
     if (isProtected(target,'Stun').length) {
 
         console.log('Stun Blocked!');
-        isProtected(target,'Stun').splice(0,1);
+        target.hanging.protection.pop();
 
     } else {
 
@@ -357,6 +360,8 @@ let Stun = (target,n) => {
         Protect(target,'Stun Block','Stun');
 
     }
+
+    console.log(...target.hanging.protection);
 
 }
  

@@ -19,7 +19,7 @@ class Player {
                 break;
             case 'Ice':
                 this.hp = 2500;
-                this.speed = 1;
+                this.speed = 0;
                 break;
             case 'Light':
                 this.hp = 2300;
@@ -73,12 +73,14 @@ class Player {
 
 }
 
-let p1 = new Player(RandomName(),'Fire');
-let p2 = new Player(RandomName(),'Steel');
-let p3 = new Player(RandomName(),'Dark');
-let p4 = new Player(RandomName(),'Ice');
-let p5 = new Player(RandomName(),'Light');
-let p6 = new Player(RandomName(),'Fire');
+let e = ['Fire','Ice','Dark','Light','Steel']
+
+let p1 = new Player(RandomName(),RandomName(e));
+let p2 = new Player(RandomName(),RandomName(e));
+let p3 = new Player(RandomName(),RandomName(e));
+let p4 = new Player(RandomName(),RandomName(e));
+let p5 = new Player(RandomName(),RandomName(e));
+let p6 = new Player(RandomName(),RandomName(e));
 
 let team1 = {
     p1,
