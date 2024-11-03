@@ -39,8 +39,6 @@ class Player {
 
     cast(spell,target,caster=this) {
 
-            // spell = spellCatalogue.findSpell(spell);
-
             spell = this.spellbook[spell];
     
             queue.queue.push([this.speed,caster,target,spell]);

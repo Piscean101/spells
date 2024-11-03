@@ -38,7 +38,7 @@ const go = () => {
 
     let [hpimg,mpimg,speimg,accimg] = ['<img src="../data/images/hp.png" class="statimg"/>',`<img src="../data/images/mp.png" class="statimg"/>`,`<img src="../data/images/spe.png" class="statimg"/>`,`<img src="../data/images/acc.png" class="statimg"/>`];
 
-    for (let i = 1; i <= 3; i++) {
+    for (let i = 1; i <= board1.teams.roster.length/2; i++) {
 
         let target = board1.teams.roster[i-1];
     
@@ -82,7 +82,7 @@ const refresh = () => {
 
     let [hpimg,mpimg,speimg,accimg] = ['<img src="../data/images/hp.png" class="statimg" title="Health"/>',`<img src="../data/images/mp.png" class="statimg"/>`,`<img src="../data/images/spe.png" class="statimg"/>`,`<img src="../data/images/acc.png" class="statimg"/>`];
 
-for (let i = 1; i <= 3; i++) {
+for (let i = 1; i <= board1.teams.roster.length/2; i++) {
 
     let target = board1.teams.roster[i-1];
 

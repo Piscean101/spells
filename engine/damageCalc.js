@@ -50,7 +50,7 @@ export function damageCalculator(caster,target,spell) {
     
             }
 
-            [singletarget.aoe,singletarget.cost] = [true,temp];
+            // [singletarget.aoe,singletarget.cost] = [true,temp];
             delete singletarget.count;
     
         } else {
