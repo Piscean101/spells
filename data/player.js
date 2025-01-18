@@ -92,7 +92,7 @@ let team2 = {
     p4
 }
 
-let board1 = new Board(5,1,...Object.values(team1),...Object.values(team2));
+let board1 = new Board(50,1,...Object.values(team1),...Object.values(team2));
 // p1.name += 'p1';p2.name += 'p2';p3.name += 'p3';p4.name += 'p4';p5.name += 'p5';p6.name += 'p6';
 let t1 = board1.teams.team1; let t2 = board1.teams.team2;
 

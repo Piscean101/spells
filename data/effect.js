@@ -340,7 +340,7 @@ let Stat = (target,n=1,siphon=0,stat='Speed') => {
 
 let Stun = (target,n) => {
 
-    console.log(isProtected(target,'Stun'));
+    // console.log(isProtected(target,'Stun'));
     // console.log(target.hanging.protection);
 
     if (isProtected(target,'Stun').length) {

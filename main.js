@@ -3,7 +3,7 @@ import { effectCatalogue } from "./data/effect.js";
 import { spellCatalogue } from "./data/catalogue.js";
 import { Player , board1 , t1 , t2 , p1 , p2 , p3 , p4 , p5 , p6 } from "./data/player.js";
 import { applyBuffs , checkBuffs , queue } from "./engine/combat.js";
-import { randomNumber } from "./data/math.js";
+import { hangCount, randomNumber } from "./data/math.js";
 // board1.nextRound();
 
 
@@ -22,12 +22,12 @@ console.log = (message) => {
 
 queue1.addEventListener("click", (e) => {
     console.log('<img src="../data/images/q.png" height="10px"/>');
-    p1.cast(randomNumber(3),p4);
-    p2.cast(randomNumber(3),p5);
-    p3.cast(randomNumber(3),p6);
-    p4.cast(randomNumber(3),p3);
-    p5.cast(randomNumber(3),p1);
-    p6.cast(randomNumber(3),p2);
+    p1.cast(randomNumber(5),p4);
+    p2.cast(randomNumber(5),p5);
+    p3.cast(randomNumber(5),p6);
+    p4.cast(randomNumber(5),p3);
+    p5.cast(randomNumber(5),p1);
+    p6.cast(randomNumber(5),p2);
 });
 nextRound.addEventListener("click", () => {
     board1.nextRound();
@@ -36,7 +36,7 @@ nextRound.addEventListener("click", () => {
 
 const go = () => {
 
-    let [hpimg,mpimg,speimg,accimg] = ['<img src="../data/images/hp.png" class="statimg"/>',`<img src="../data/images/mp.png" class="statimg"/>`,`<img src="../data/images/spe.png" class="statimg"/>`,`<img src="../data/images/acc.png" class="statimg"/>`];
+    let [hpimg,mpimg,speimg,accimg,listimg] = ['<img src="../data/images/hp.png" class="statimg"/>',`<img src="../data/images/mp.png" class="statimg"/>`,`<img src="../data/images/spe.png" class="statimg"/>`,`<img src="../data/images/acc.png" class="statimg"/>`,`<img src="../data/images/list.png" class="statimg"/>`];
 
     for (let i = 1; i <= board1.teams.roster.length/2; i++) {
 
@@ -44,7 +44,7 @@ const go = () => {
     
         document.getElementById(`p${i}title`).innerHTML += `<p class="nametag">${target.name}</p><img src="../data/images/${target.element}.png" class="elementIcon"/>`;
     
-        document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${mpimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc}`;
+        document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${mpimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc} ${listimg} ${hangCount(target.hanging,target.hanging.damage)}`;
     
         for (let j = 0; j < 5; j++) {
     
@@ -64,7 +64,7 @@ const go = () => {
     
         document.getElementById(`p${i}title`).innerHTML += `<p class="nametag">${target.name}</p><img src="../data/images/${target.element}.png" class="elementIcon"/>`;
     
-        document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${mpimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc}`;
+        document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${mpimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc} ${listimg} ${hangCount(target.hanging,target.hanging.damage)}`;
     
         for (let j = 0; j < 5; j++) {
     
@@ -80,13 +80,13 @@ const go = () => {
 
 const refresh = () => {
 
-    let [hpimg,mpimg,speimg,accimg] = ['<img src="../data/images/hp.png" class="statimg" title="Health"/>',`<img src="../data/images/mp.png" class="statimg"/>`,`<img src="../data/images/spe.png" class="statimg"/>`,`<img src="../data/images/acc.png" class="statimg"/>`];
+    let [hpimg,mpimg,speimg,accimg,listimg] = ['<img src="../data/images/hp.png" class="statimg" title="Health"/>',`<img src="../data/images/mp.png" class="statimg"/>`,`<img src="../data/images/spe.png" class="statimg"/>`,`<img src="../data/images/acc.png" class="statimg"/>`,`<img src="../data/images/list.png" class="statimg"/>`];
 
 for (let i = 1; i <= board1.teams.roster.length/2; i++) {
 
     let target = board1.teams.roster[i-1];
 
-    document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${mpimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc}`;
+    document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${mpimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc} ${listimg} ${hangCount(target.hanging,target.hanging.damage)}`;
 
 }
 
@@ -94,7 +94,7 @@ for (let i = 4; i <= 6; i++) {
 
     let target = board1.teams.roster[i-1];
 
-    document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${mpimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc}`;
+    document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${mpimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc} ${listimg} ${hangCount(target.hanging,target.hanging.damage)}`;
 
 }
 

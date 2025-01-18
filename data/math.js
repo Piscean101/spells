@@ -172,3 +172,23 @@ function spellsOfType(type) {
     })
 
 }
+
+const arr1 = numberArray(10,30,true);
+
+const obj = {
+    a: [1,2],
+    b: [3,4,5],
+    c: [1],
+    d: [2,3]
+}
+
+export function hangCount(obj,ex) {
+    let result = 0;
+    for(const stat of Object.entries(obj)) {
+        stat[0] != ex ? result += stat[1].length : null;
+    }
+    console.log(result)
+    return result;
+}
+
+hangCount(obj,'d')

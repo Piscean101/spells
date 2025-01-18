@@ -31,7 +31,7 @@ export class Attack extends Spell {
         super(cost,title,element,accuracy,effect)
         this.power = power;
         this.ot = ot;
-        this.ot ? this.types.push('OverTime') : this.types.push('Damage');
+        this.ot ? this.types.unshift('OverTime') : this.types.unshift('Damage');
     }
 
 }
