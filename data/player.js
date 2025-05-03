@@ -14,7 +14,7 @@ class Player {
         this.spellbook = [];
         switch(this.element) {
             case 'Fire':
-                this.hp = 2000;
+                this.hp = 1500;
                 this.speed = 2;
                 break;
             case 'Ice':
@@ -22,7 +22,7 @@ class Player {
                 this.speed = 0;
                 break;
             case 'Light':
-                this.hp = 2300;
+                this.hp = 2000;
                 this.speed = 1;
                 break;
             case 'Dark':
@@ -30,7 +30,7 @@ class Player {
                 this.speed = 1;
                 break;
             case 'Steel':
-                this.hp = 2200;
+                this.hp = 2000;
                 this.speed = 0;
                 break;
         }
@@ -43,7 +43,8 @@ class Player {
     
             queue.queue.push([this.speed,caster,target,spell]);
 
-    }
+             
+        }
 
     action(target,spell,trueDmg=0) {
 
