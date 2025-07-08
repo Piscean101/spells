@@ -10,6 +10,7 @@ export class Spell {
         this.accuracy = accuracy;
         this.effect = effect;
         this.types = [];
+        this.tooltip = [0,''];
         !this.effect ? null : this.effect.forEach(e => {
             e[0] == effectCatalogue.Heal ? this.types.push('Heal') : 
             e[0] == effectCatalogue.Charm && !this.types.includes('Charm') ? this.types.push(`{${e[1][1]}} ${e[1][2]}-Charm`) :

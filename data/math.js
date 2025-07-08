@@ -187,7 +187,6 @@ export function hangCount(obj,ex) {
     for(const stat of Object.entries(obj)) {
         stat[0] != ex ? result += stat[1].length : null;
     }
-    console.log(result)
     return result;
 }
 

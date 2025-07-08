@@ -53,7 +53,7 @@ let HeroicEpic = new Attack(3,'Heroic Epic','Light',90,255,[[effectCatalogue.Sel
 let Horror = new Attack(4,'Horror','Dark',85,125,[[effectCatalogue.Charm,['Infection',-500,'Heal']],[effectCatalogue.Stat,[-5,0,'Acc']],[effectCatalogue.Charm,['Paranoia',-1000,'Damage']]]); // Effect 5
 let Iceberg = new Attack(3,'Iceberg','Ice',80,245,[[effectCatalogue.DestroyMana,[1,'Siphon']]]); // Effect 1
 let Melancholy = new Attack(2,'Melancholy','Dark',85,180,[[effectCatalogue.RemoveOT,[1,'Heal']]]); // Effect 1
-let NeedlePunch = new Attack(4,'Needle Punch','Steel',80,300,[[effectCatalogue.Ward,['Pinpoint',150,'Damage']],[effectCatalogue.Stat,[0,2,'Acc']]]); // Effect 2
+let NeedlePunch = new Attack(4,'Needle Punch','Steel',80,300,[[effectCatalogue.Ward,['Pinpoint',125,'Damage']],[effectCatalogue.Stat,[0,2,'Acc']]]); // Effect 2
 let Prey = new Attack(2,'Prey','Dark',85,'Drain',[[effectCatalogue.Drain,[250,.5]]]);
 let Retribution = new Attack(4,'Retribution','Light',90,360);
 let Shred = new Attack(2,'Shred','Steel',80,185,[[effectCatalogue.RemoveWard,[2]]]); //Effect 1
@@ -211,18 +211,20 @@ export let spellCatalogue = {
         // Slash
     ],
 
-    checkCatalogue(element=null,random=0) {
+    checkCatalogue(element=null,data=false,random=null) {
 
         let [total,catalogue,filter] = [0,Object.entries(this).splice(0,5),[]];
     
         if (element) {
             
             filter = catalogue.filter(e => { return e[0] == element })[0][1];
-
-            // console.log(filter);
     
             total = filter.length;
     
+        } else if (data) {
+
+            catalogue.forEach(e => { filter.push(e) })
+
         } else {
     
             for (const element of catalogue) {
@@ -284,7 +286,7 @@ export let spellCatalogue = {
 
         return result[0];
 
-    }
+    },
 
 };
 
