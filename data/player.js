@@ -14,23 +14,23 @@ class Player {
         this.spellbook = [];
         switch(this.element) {
             case 'Fire':
-                this.hp = 1500;
+                this.hp = 1000;
                 this.speed = 2;
                 break;
             case 'Ice':
-                this.hp = 2500;
+                this.hp = 1750;
                 this.speed = 0;
                 break;
             case 'Light':
-                this.hp = 2000;
+                this.hp = 1500;
                 this.speed = 1;
                 break;
             case 'Dark':
-                this.hp = 2000;
+                this.hp = 1250;
                 this.speed = 1;
                 break;
             case 'Steel':
-                this.hp = 2000;
+                this.hp = 1500;
                 this.speed = 0;
                 break;
         }
@@ -57,8 +57,8 @@ class Player {
 
             if (spell) {
                 
-                spell.aoe ? console.log(`<p class="casting log"><img src="../data/images/q.png" height="10px"/><img src="../data/images/q.png" height="10px"/> ${this.name} cast ${spell.title}</p>`) : 
-                spell.aoe === false ? console.log(`<p class="casting log"><img src="../data/images/q.png" height="10px"/><img src="../data/images/q.png" height="10px"/> ${this.name} cast ${spell.title} on ${target.name}</p>`) : null;
+                spell.aoe ? console.log(`<p class="casting log"><img src="../data/images/q.png" height="6px"/><img src="../data/images/q.png" height="10px"/> ${this.name} cast ${spell.title}</p>`) : 
+                spell.aoe === false ? console.log(`<p class="casting log"><img src="../data/images/q.png" height="6px"/><img src="../data/images/q.png" height="10px"/> ${this.name} cast ${spell.title} on ${target.name}</p>`) : null;
                 
                 damageCalculator(this,target,spell) === true ? this.mana -= spell.cost : null;
             
@@ -93,10 +93,12 @@ let team2 = {
     p4
 }
 
-let board1 = new Board(50,1,...Object.values(team1),...Object.values(team2));
+// let board1 = new Board(50,1,...Object.values(team1),...Object.values(team2));
 // p1.name += 'p1';p2.name += 'p2';p3.name += 'p3';p4.name += 'p4';p5.name += 'p5';p6.name += 'p6';
+let board1 = new Board(50,1,...Object.values(team1),...Object.values(team2));
+let board2 = new Board(10,1,...Object.values(team1),...Object.values(team2));
 let t1 = board1.teams.team1; let t2 = board1.teams.team2;
 
 // console.log(p1.name,p2.name,p3.name,p4.name,p5.name,p6.name)
 
-export { Player , board1 , t1 , t2 , p1 , p2 , p3 , p4 , p5 , p6 }
+export { Player , board1 , board2, t1 , t2 , p1 , p2 , p3 , p4 , p5 , p6 }

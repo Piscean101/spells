@@ -102,7 +102,7 @@ let Snowdrift = new Instant(1,'Snow Drift','Ice',80,[[effectCatalogue.Stat,[-1,1
 let Stargaze = new Instant(2,'Stargaze','Light',90,[[effectCatalogue.AddMana,[3]]]);
 let Stun = new Instant(0,'Stun','Ice',80,[[effectCatalogue.Stun,[1]]]);
 let StunBlock = new Instant(1,'Stun Block','Ice',100,[[effectCatalogue.Protect,['Stun Block','Stun']],[effectCatalogue.Protect,['Stun Block','Stun']]]);
-let Temptation = new Instant(0,'Temptation','Dark',100,[[effectCatalogue.AddMana,[2]],[effectCatalogue.Stat,[-1]]]);
+let Temptation = new Instant(0,'Temptation','Dark',100,[[effectCatalogue.AddMana,[2]],[effectCatalogue.Stat,[-2]]]);
 let Triage = new Instant(3,'Triage','Light',90,[[effectCatalogue.RemoveOT,[2,'Damage']],[effectCatalogue.Ward,['Absorb',-50,'Damage']]]); 
 
 EnergyHelix.ot = true; PhoenixSong.ot = true;
