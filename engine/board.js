@@ -53,8 +53,6 @@ export class Board {
 
             for (const t of Object.values(this.teams).splice(0,2)) {
 
-                console.log(t);
-
                 for (const p of t) {
 
                     p.mates.push(...t);
@@ -78,8 +76,6 @@ export class Board {
             }
 
         };
-
-        this.init();
 
     }
 

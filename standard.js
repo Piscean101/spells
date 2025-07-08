@@ -12,6 +12,7 @@ const queue1 = document.getElementById('queue');
 const nextRound = document.getElementById('next');
 const log = document.getElementById('console');
 let board = board2;
+board.init();
 let [pl1,pl2,pl3,pl4,pl5,pl6] = [document.getElementById('p1'),document.getElementById('p2'),document.getElementById('p3'),document.getElementById('p4'),document.getElementById('p5'),document.getElementById('p6')]
 
 const old = console.log();

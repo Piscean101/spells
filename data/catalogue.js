@@ -83,7 +83,7 @@ let BraceForImpact = new Instant(2,'Brace For Impact','Steel',100,[[effectCatalo
 let Excruciate = new Instant(1,'Excruciate','Dark',85,[[effectCatalogue.Ward,['Excruciate',100,'Damage',true]]]);
 let Fortress = new Instant(3,'Fortress','Steel',100,[[effectCatalogue.Ward,['Absorb',-200,'Damage',true,true]]]);
 let GuardianAngel = new Instant(4,'Guardian Angel','Light',90,[[effectCatalogue.Ward,['Absorb',-600,'Damage']],[effectCatalogue.RemoveCharm,[1]]]);
-let Juggernaut = new Instant(3,'Juggernaut','Ice',80,[[effectCatalogue.Protect,['Block','DoT']],[effectCatalogue.Protect,['Block','DoT']],[effectCatalogue.Protect,['Block','DoT']]]);
+let Juggernaut = new Instant(2,'Juggernaut','Ice',100,[[effectCatalogue.Protect,['Block','DoT']],[effectCatalogue.Protect,['Block','DoT']]]);
 let Pinpoint = new Instant(0,'Pinpoint','Steel',100,[[effectCatalogue.Ward,['Pinpoint',75,'Damage']],[effectCatalogue.Stat,[0,1,'Acc']]]);
 // INSTANTS
 let Block = new Instant(1,'Block','Steel',80,[[effectCatalogue.Protect,['Block','DoT']]]);
