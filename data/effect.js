@@ -160,21 +160,37 @@ let Indestructible = (target,type='Ward') => {
 
 }
 
-let Melt = (target,type='charms') => {
+let Melt = (target,type='both') => {
 
     type = type.toLowerCase();
 
-    target.hanging[type].forEach(e => {
+    if (type == 'both') {
+
+        target.hanging['charms'].forEach(e => {
 
         e.indestructible = false;
         
-    });
+        });
 
-    console.log(`${target.name}'s ${type} can be destroyed!`);
+        target.hanging['wards'].forEach(e => {
 
-    target.hanging.protection.length ? console.log(`Destroyed ${target.name}'s protection`,`\n`) : null;
+        e.indestructible = false;
+        
+        });
 
-    target.hanging.protection = [];
+        console.log(`${target.name}'s Charms and Wards can be destroyed!`);
+        
+    } else {
+
+        target.hanging[type].forEach(e => {
+
+        e.indestructible = false;
+        
+        });
+
+        console.log(`${target.name}'s ${type} can be destroyed!`);
+
+    }
 
 }
 

@@ -43,8 +43,7 @@ class Player {
     
             queue.queue.push([this.speed,caster,target,spell]);
 
-             
-        }
+    }
 
     action(target,spell,trueDmg=0) {
 
@@ -60,7 +59,7 @@ class Player {
                 spell.aoe ? console.log(`<p class="casting log"><img src="../data/images/q.png" height="6px"/><img src="../data/images/q.png" height="10px"/> ${this.name} cast ${spell.title}</p>`) : 
                 spell.aoe === false ? console.log(`<p class="casting log"><img src="../data/images/q.png" height="6px"/><img src="../data/images/q.png" height="10px"/> ${this.name} cast ${spell.title} on ${target.name}</p>`) : null;
                 
-                damageCalculator(this,target,spell) === true ? this.mana -= spell.cost : null;
+                damageCalculator(this,target,spell);
             
             };
             

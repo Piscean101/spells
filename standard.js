@@ -17,6 +17,8 @@ let [pl1,pl2,pl3,pl4,pl5,pl6] = [document.getElementById('p1'),document.getEleme
 
 const old = console.log();
 
+const maxSpellCount = 4;
+
 console.log = (message) => {
     message ? log.innerHTML += `<br><br>${[...Object.values(message)].join('')}` : Error(message);
 }
@@ -24,12 +26,12 @@ console.log = (message) => {
 
 queue1.addEventListener("click", (e) => {
     console.log('<img src="../data/images/q.png" height="10px"/>');
-    p1.cast(randomNumber(5),p4);
-    p2.cast(randomNumber(5),p5);
-    p3.cast(randomNumber(5),p6);
-    p4.cast(randomNumber(5),p3);
-    p5.cast(randomNumber(5),p1);
-    p6.cast(randomNumber(5),p2);
+    p1.cast(randomNumber(maxSpellCount),p4);
+    p2.cast(randomNumber(maxSpellCount),p5);
+    p3.cast(randomNumber(maxSpellCount),p6);
+    p4.cast(randomNumber(maxSpellCount),p3);
+    p5.cast(randomNumber(maxSpellCount),p1);
+    p6.cast(randomNumber(maxSpellCount),p2);
 });
 nextRound.addEventListener("click", () => {
     board.nextRound();
@@ -48,7 +50,7 @@ const go = () => {
     
         document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${mpimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc} ${listimg} ${hangCount(target.hanging,target.hanging.damage)}`;
     
-        for (let j = 0; j < 5; j++) {
+        for (let j = 0; j < maxSpellCount; j++) {
     
             let spell = target.spellbook[j];
     
@@ -68,7 +70,7 @@ const go = () => {
     
         document.getElementById(`p${i}stats`).innerHTML = `${hpimg} ${target.hp} ${mpimg} ${target.mana} <br> ${speimg} ${target.speed} ${accimg} ${target.acc} ${listimg} ${hangCount(target.hanging,target.hanging.damage)}`;
     
-        for (let j = 0; j < 5; j++) {
+        for (let j = 0; j < maxSpellCount; j++) {
     
             let spell = target.spellbook[j];
     
