@@ -1,6 +1,7 @@
 :root {
     --neutral: rgba(60,60,60);
     --keyword: rgb(255, 190, 50);
+    --outline: rgb(100,100,100);
 }
 body {
     margin: 20px;
@@ -15,8 +16,8 @@ body {
 }
 .card {
     border: solid 3px var(--neutral);
-    min-width: 150px;
-    height: 200px;
+    min-width: 200px;
+    height: 250px;
     font-size: 15px;
     text-align: center;
     color: rgb(221, 221, 221);
@@ -67,6 +68,8 @@ body {
     bottom: 5px;
     position: relative; 
     color: var(--neutral);
+    -webkit-text-stroke: 0.2px var(--outline);
+    font-size: 150%;
     left: 0 }
 
 .card-display-stats { 

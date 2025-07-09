@@ -69,18 +69,18 @@ let Sacrifice = new Heal(2,'Sacrifice','Dark',85,[[effectCatalogue.Sacrifice,[25
 // CHARMS
 let Condemn = new Instant(2,'Condemn','Dark',85,[[effectCatalogue.Charm,['Condemn',-250,'Heal',true]]]);
 let Entomb = new Instant(3,'Entomb','Ice',80,[[effectCatalogue.Charm,['Entomb',-250,'Damage',true]]]);
-let Frenzy = new Instant(3,'Frenzy','Fire',100,[[effectCatalogue.Charm,['Frenzy',50,'Damage',true]],[effectCatalogue.Charm,['Frenzy',350,'Damage']]]);
+let Frenzy = new Instant(3,'Frenzy','Fire',100,[[effectCatalogue.Charm,['Frenzy',100,'Damage',true]],[effectCatalogue.Charm,['Frenzy',350,'Damage']]]);
 let Fury = new Instant(0,'Fury','Fire',75,[[effectCatalogue.Charm,['Fury',75,'Damage']]]);
-let Miasma = new Instant(1,'Miasma','Dark',85,[[effectCatalogue.Charm,['Miasma',-300,'Heal']]]);
+let Miasma = new Instant(1,'Miasma','Dark',85,[[effectCatalogue.Charm,['Miasma',-500,'Heal']]]);
 let Paranoia = new Instant(3,'Paranoia','Dark',85,[[effectCatalogue.Charm,['Paranoia',-1000,'Damage']]]);
-let Rage = new Instant(0,'Rage','Fire',50,[[effectCatalogue.Charm,['Rage',100,'Damage']],[effectCatalogue.AddMana,[2]]]);
+let Rage = new Instant(0,'Rage','Fire',50,[[effectCatalogue.Charm,['Rage',100,'Damage']],[effectCatalogue.AddMana,[1]]]);
 let Shroud = new Instant(1,'Shroud','Dark',50,[[effectCatalogue.Charm,['Weakness',-100,'Damage',true]],[effectCatalogue.Stat,[-2,0,'Acc']]]);
-let Stormfront = new Instant(1,'Stormfront','Fire',75,[[effectCatalogue.Charm,['Stormfront',125,'Damage']],[effectCatalogue.Stat,[2,0,'Acc']]]);
+let Stormfront = new Instant(1,'Stormfront','Fire',75,[[effectCatalogue.Charm,['Stormfront',125,'Damage']],[effectCatalogue.Stat,[1,0,'Acc']]]);
 let Weakness = new Instant(0,'Weakness','Ice',100,[[effectCatalogue.Charm,['Weakness',-75,'Damage']]]);
 // WARDS
 let Absorb = new Instant(0,'Absorb','Light',100,[[effectCatalogue.Ward,['Absorb',-100,'Damage']]]);
 let BraceForImpact = new Instant(2,'Brace For Impact','Steel',100,[[effectCatalogue.Ward,['Absorb',-175,'Damage',true]],[effectCatalogue.Stat,[-1]]]);
-let Excruciate = new Instant(1,'Excruciate','Dark',85,[[effectCatalogue.Ward,['Excruciate',100,'Damage',true]]]);
+let Excruciate = new Instant(1,'Excruciate','Dark',85,[[effectCatalogue.Ward,['Excruciate',75,'Damage',true]]]);
 let Fortress = new Instant(3,'Fortress','Steel',100,[[effectCatalogue.Ward,['Absorb',-200,'Damage',true,true]]]);
 let GuardianAngel = new Instant(1,'Guardian Angel','Light',90,[[effectCatalogue.Ward,['Absorb',-200,'Damage']],[effectCatalogue.RemoveCharm,[1]]]);
 let Juggernaut = new Instant(2,'Juggernaut','Ice',100,[[effectCatalogue.Ward,['Absorb',-200,'Damage',true]],[effectCatalogue.Protect,['Block','DoT']]]);
