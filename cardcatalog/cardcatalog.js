@@ -9,10 +9,6 @@ const displayCatalog = () => {
 
     for (const card of cardCatalog) {
 
-        // result.push(`<div class="card"><p>Test</p></div>`)
-
-        console.log(card);
-
         let cardBody = document.createElement("button");
 
         cardBody.classList.add('card',card.element);
@@ -21,9 +17,9 @@ const displayCatalog = () => {
         
                                 <span class="card-display-title">${card.title}</span>   <br><br>
 
-                                <span class="card-display-stats"><span>${card.power ? card.power : '-'}</span> <span>${card.accuracy}%</span></span>
+                                <span class="card-display-stats"><span>${card.power == 'Drain' ? card.effect[0][1][0] : card.power ? card.power : '-'}</span> <span>${card.accuracy}%</span></span>
 
-                                <span class="card-display-effect"><span>${card.aoe ? 'AoE' : ''}</span> <span>${card.ot ? 'OverTime' : ''}</span> <span>${card.types.includes('Heal') ? 'Heal' : ''}</span> <br> <span class="main-effect">${card.effect ? 'Secondary Effect' : ''}</span></span>
+                                <span class="card-display-effect"><span>${card.aoe ? 'AoE' : ''}</span> <span>${card.ot ? 'OverTime' : ''}</span> <span>${card.types.includes('Heal') ? 'Heal' : ''}</span> <span>${card.effect ? 'Effect' : ''}</span> <br> <span class="main-effect">${card.effect ? card.types.filter(e => e != 'Damage' && e != 'AoE' && e != 'Heal' && e != 'Effect' && e != 'OverTime').join('<br>') : ''}</span></span>
                                 
                                 `;
 
@@ -31,7 +27,7 @@ const displayCatalog = () => {
 
         App.appendChild(cardBody);
 
-        console.log(App)
+        // console.log(App)
 
     }
 

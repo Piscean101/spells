@@ -262,6 +262,40 @@ let RemoveOT = (target,n=1,type='Damage') => {
 
 };
 
+let RemoveProtection = (target,type='both') => {
+
+    type = type.toLowerCase();
+
+    if (type == 'both') {
+
+        target.hanging['charms'].forEach(e => {
+
+        e.indestructible = false;
+        
+        });
+
+        target.hanging['wards'].forEach(e => {
+
+        e.indestructible = false;
+        
+        });
+
+        console.log(`${target.name}'s Charms and Wards can be destroyed!`);
+        
+    } else {
+
+        target.hanging[type].forEach(e => {
+
+        e.indestructible = false;
+        
+        });
+
+        console.log(`${target.name}'s ${type} can be destroyed!`);
+
+    }
+
+}
+
 let RemoveWard = (target,n=1) => {
 
     let [wards,count] = [target.hanging.wards,0];
@@ -428,6 +462,7 @@ export let effectCatalogue = {
     RemoveCharm: RemoveCharm,
     RemoveCharmAll: RemoveCharmAll,
     RemoveOT: RemoveOT,
+    RemoveProtection: RemoveProtection,
     RemoveWard: RemoveWard,
     RemoveWardAll: RemoveWardAll,
     Sacrifice: Sacrifice,

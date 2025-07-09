@@ -31,7 +31,7 @@ let MegatonHammer = new AoE(5,'Megaton Hammer','Steel',80,340,[[effectCatalogue.
 let Splendor = new AoE(3,'Splendor','Light',90,0,[[effectCatalogue.Heal,[500]]]);
 let WarCry = new AoE(3,'War Cry','Fire',75,0,[[effectCatalogue.Charm,['War Cry',250,'Damage',true]],[effectCatalogue.Stat,[1]]]);
 let Wildfire = new AoE(2,'Wildfire','Fire',70,340,null,4);
-let WitchHunt = new AoE(3,'Witch Hunt','Fire',75,260,[[effectCatalogue.Melt,['charms']]]); // Effect 0.5
+let WitchHunt = new AoE(3,'Witch Hunt','Fire',75,260,[[effectCatalogue.RemoveProtection,['charms']]]); // Effect 0.5
 // OVER-TIMES
 let BrainFreeze = new Attack(4,'Brain Freeze','Ice',75,440,[[effectCatalogue.Stun,[2]]],4); // Effect 1
 let EnergyHelix = new Attack(2,'Energy Helix','Fire',90,0,[[effectCatalogue.Heal,[475,3]],[effectCatalogue.Stat,[1]]],3); // Effect 0
@@ -95,7 +95,7 @@ let Freeze = new Instant(2,'Freeze','Ice',80,[[effectCatalogue.Stun,[2]]]);
 let Hibernate = new Instant(3,'Hibernate','Ice',80,[[effectCatalogue.Stun,[1]],[effectCatalogue.DestroyMana,[4]]]);
 let Indestructible = new Instant(1,'Indestructible','Steel',100,[[effectCatalogue.Indestructible,['Ward']],[effectCatalogue.Protect,['Block','DoT']]]);
 let Invoke = new Instant(4,'Invoke','Dark',85,[[effectCatalogue.RemoveCharmAll,[]],[effectCatalogue.RemoveWardAll,[]]]);
-let Melt = new Instant(1,'Melt','Fire',75,[[effectCatalogue.Melt,[]]]);
+let Melt = new Instant(1,'Melt','Fire',75,[[effectCatalogue.RemoveProtection,[]]]);
 let Overheat = new Instant(3,'Overheat','Fire',75,[[effectCatalogue.RemoveCharmAll,[]]]);
 let Pierce = new Instant(0,'Pierce','Steel',80,[[effectCatalogue.RemoveWard,[1]]]);
 let Snowdrift = new Instant(1,'Snow Drift','Ice',80,[[effectCatalogue.Stat,[-1,1]]]);
