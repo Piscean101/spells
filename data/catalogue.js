@@ -62,10 +62,11 @@ let Spark = new Attack(0,'Spark','Fire',100,75);
 let Static = new Attack(1,'Static','Light',90,140,[[effectCatalogue.Stat,[-1]]]); // Effect 0
 let Thunderbolt = new Attack(5,'Thunderbolt','Fire',75,685);
 // HEALS
-let Sentinel = new Heal(4,'Sentinel','Steel',80,[[effectCatalogue.Heal,[550]],[effectCatalogue.Indestructible,['Ward']]]); // Effect 1
+let Sentinel = new Heal(4,'Sentinel','Steel',80,[[effectCatalogue.Heal,[465]],[effectCatalogue.Indestructible,['Ward']]]); // Effect 0.5
 let Rest = new Heal(3,'Rest','Light',100,[[effectCatalogue.Heal,[620]],[effectCatalogue.Stun,[2]],[effectCatalogue.RemoveOT,[2,'Damage']]]); // Effect 1
 let Sunshine = new Heal(4,'Sunshine','Light',85,[[effectCatalogue.Heal,[880]]]);
 let Sacrifice = new Heal(2,'Sacrifice','Dark',85,[[effectCatalogue.Sacrifice,[250,2.2]]]); 
+// let Sprite = new Heal (1,'Sprite','Earth',80,[[effectCatalogue.Heal,[100]]]);
 // CHARMS
 let Condemn = new Instant(2,'Condemn','Dark',85,[[effectCatalogue.Charm,['Condemn',-250,'Heal',true]]]);
 let Entomb = new Instant(3,'Entomb','Ice',80,[[effectCatalogue.Charm,['Entomb',-250,'Damage',true]]]);
@@ -93,7 +94,7 @@ let Dispel = new Instant(1,'Dispel','Light',100,[[effectCatalogue.RemoveCharm,[1
 let Empower = new Instant(0,'Empower','Ice',80,[[effectCatalogue.AddMana,[1]]]);
 let Freeze = new Instant(2,'Freeze','Ice',80,[[effectCatalogue.Stun,[2]]]);
 let Hibernate = new Instant(3,'Hibernate','Ice',80,[[effectCatalogue.Stun,[1]],[effectCatalogue.DestroyMana,[4]]]);
-let Indestructible = new Instant(1,'Indestructible','Steel',100,[[effectCatalogue.Indestructible,['Ward']],[effectCatalogue.Protect,['Block','DoT']]]);
+let Indestructible = new Instant(1,'Indestructible','Steel',80,[[effectCatalogue.Indestructible,['Ward']],[effectCatalogue.Protect,['Block','DoT']]]);
 let Invoke = new Instant(4,'Invoke','Dark',85,[[effectCatalogue.RemoveCharmAll,[]],[effectCatalogue.RemoveWardAll,[]]]);
 let Melt = new Instant(1,'Melt','Fire',75,[[effectCatalogue.RemoveProtection,[]]]);
 let Overheat = new Instant(3,'Overheat','Fire',75,[[effectCatalogue.RemoveCharmAll,[]]]);
@@ -130,6 +131,12 @@ export let spellCatalogue = {
         Shroud,
         // Temptation
     ],
+    // Earth: [ 
+    //      Open with at least 5 spells
+    //     // PROS: HEALING, DAMAGE BUFF, CHARM REMOVAL, WARD REMOVAL
+    //     // CONS: LOW STUNS, LOW SECONDARY EFFECT, NO OVERTIME, NO STAT CONTROL
+    //     // Sprite,
+    // ],
     Fire: [
     // PROS: DAMAGE BUFF, HIGH AOE, HEALING, CHARM REMOVAL [HIGH OVERTIME]
     // CONS: LOW HEALTH, NO WARD REMOVAL, NO DAMAGE REDUCTION, NO STUNS
@@ -171,8 +178,8 @@ export let spellCatalogue = {
         Weakness
     ],
     Light: [
-    // PROS: STAT CONTROL, HEALING, CHARM REMOVAL, WARD REMOVAL
-    // CONS: LOW AOE [DAMAGE], LOW OVERTIME, NO DAMAGE BUFF, NO STUNS
+    // PROS: STAT CONTROL, HIGH HEALING, CHARM REMOVAL, DAMAGE REDUCTION
+    // CONS: LOW AOE [DAMAGE], LOW OVERTIME [DAMAGE], NO DAMAGE BUFF, NO STUNS
         Absorb,
         DivineIntervention,
         Dispel,

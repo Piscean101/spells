@@ -108,6 +108,10 @@ body {
     background-image: linear-gradient(black, purple, rgba(229, 0, 229, 0.901), black);
     border-color: purple;
 }
+.Earth {
+    background-image: linear-gradient(rgb(165, 73, 42), darkgreen, green, lightgreen);
+    border-color: var(--neutral)
+}
 .Steel {
     /* background-color: grey; */
     background-image: linear-gradient(black, grey, grey, grey);

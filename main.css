@@ -1,6 +1,7 @@
 :root {
     --stunned: rgb(65, 99, 186);
 }
+
 .log {
     font-size: 15px;
     position: absolute;
@@ -213,6 +214,10 @@ body {
 .Dark {
     background-color: Purple;
     border: 2px inset purple;
+}
+.Earth {
+    background-color: green;
+    border: 2px inset green;
 }
 .Steel {
     background-color: grey;
