@@ -14,25 +14,28 @@ class Player {
         this.spellbook = [];
         switch(this.element) {
             case 'Fire':
-                this.hp = 2000;
+                this.hp = 1250;
                 this.speed = 2;
                 break;
             case 'Ice':
-                this.hp = 3500;
+                this.hp = 2500;
                 this.speed = 0;
                 break;
             case 'Light':
-                this.hp = 3000;
+                this.hp = 2000;
                 this.speed = 1;
                 break;
             case 'Dark':
-                this.hp = 2500;
+                this.hp = 1500;
                 this.speed = 1;
                 break;
             case 'Steel':
-                this.hp = 3000;
+                this.hp = 1750;
                 this.speed = 0;
                 break;
+            case 'Earth':
+                this.hp = 1750;
+                this.speed = 0;
         }
         this.maxhp = this.hp;
     }
