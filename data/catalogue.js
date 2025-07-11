@@ -24,16 +24,18 @@ let Blizzard = new AoE(4,'Blizzard','Ice',80,390,[[effectCatalogue.Stat,[-2,0,'A
 let ChainsawMassacre = new AoE(4,'Chainsaw Massacre','Steel',80,290,[[effectCatalogue.RemoveWard,[2]]]); // Effect 1
 let DivineIntervention = new AoE(5,'Divine Intervention','Light',85,0,[[effectCatalogue.Heal,[590]],[effectCatalogue.Ward,['Absorb',-400,'Damage']]]); // Effect 2
 let Earthquake = new AoE(5,'Earthquake','Earth',75,450);
+let Explosion = new AoE(5,'Explosion','Fire',75,600,[[effectCatalogue.DamageSelf,[120]]]);
 let Glimmers = new AoE(2,'Glimmers','Light',90,180);
 let Grindhouse = new AoE(3,'Grindhouse','Steel',80,280);
 let Hellraise = new AoE(6,'Hellraise','Fire',70,815,[[effectCatalogue.RemoveCharmAll,[]]],6); // LEGENDARY Effect 2
 let Inspire = new AoE(1,'Inspire','Light',85,0,[[effectCatalogue.Heal,[195,3]],[effectCatalogue.Stat,[1,0,'Acc']]],3); // Effect 0
 let MegatonHammer = new AoE(5,'Megaton Hammer','Steel',80,400,[[effectCatalogue.Stun,[1]]]); // Effect 0
-let Seraph = new Heal(4,'Seraph','Earth',70,[[effectCatalogue.Heal,[555]]]);
+let Seraph = new AoE(4,'Seraph','Earth',70,0,[[effectCatalogue.Heal,[555]]]);
 let Splendor = new AoE(3,'Splendor','Light',85,0,[[effectCatalogue.Heal,[525]]]);
 let WarCry = new AoE(3,'War Cry','Fire',100,0,[[effectCatalogue.Charm,['War Cry',250,'Damage',true]],[effectCatalogue.Stat,[1]]]);
 let Wildfire = new AoE(2,'Wildfire','Fire',70,360,null,4);
 let WitchHunt = new AoE(3,'Witch Hunt','Fire',75,275,[[effectCatalogue.RemoveProtection,['charms']]]); // Effect 0.5
+let WorldOfWonder = new AoE(4,'World Of Wonder','Earth',70,0,[[effectCatalogue.Charm,['WoW',400,'Damage',true]]]);
 // OVER-TIMES
 let BrainFreeze = new Attack(4,'Brain Freeze','Ice',75,480,[[effectCatalogue.Stun,[2]]],4); // Effect 1
 let EnergyHelix = new Heal(2,'Energy Helix','Fire',70,[[effectCatalogue.Heal,[435,3]],[effectCatalogue.Stat,[1]]],3); // Effect 0
@@ -50,7 +52,7 @@ let CloseCombat = new Attack(4,'Close Combat','Steel',80,360,[[effectCatalogue.S
 let DarkPact = new Attack(3,'Dark Pact','Dark',80,'Drain',[[effectCatalogue.Drain,[180,.5]],[effectCatalogue.Ward,['Condemn',-250,'Heal',true]]]); // Effect 2
 let Firecracker = new Attack(2,'Firecracker','Fire',75,240,[[effectCatalogue.Stat,[0,1]]]); // Effect 1
 let Frostbite = new Attack(2,'Frostbite','Ice',80,225,[[effectCatalogue.Stat,[-1]]]); // Effect 0
-let EnergyTap = new Attack(3,'Energy Tap','Earth',75,375,[[effectCatalogue.SelfEnchant,['Buff','Charms','Damage',100]]]); // Effect 0
+let EnergyTap = new Attack(3,'Energy Tap','Earth',75,375,[[effectCatalogue.SelfEnchant,['Energy-Tap','Charms','Damage',100]]]); // Effect 0
 let Guillotine = new Attack(6,'Guillotine','Steel',75,845); // LEGENDARY
 let HeroicEpic = new Attack(3,'Heroic Epic','Light',90,285,[[effectCatalogue.SelfEnchant,['Stun Block','Protection','Stun']]]); // Effect 0
 let Horror = new Attack(4,'Horror','Dark',85,150,[[effectCatalogue.Charm,['Infection',-500,'Heal']],[effectCatalogue.Stat,[-5,0,'Acc']],[effectCatalogue.Charm,['Paranoia',-1000,'Damage']]]); // Effect 5
@@ -98,10 +100,11 @@ let Empower = new Instant(0,'Empower','Ice',80,[[effectCatalogue.AddMana,[1]]]);
 let Freeze = new Instant(1,'Freeze','Ice',100,[[effectCatalogue.Stun,[1]]]);
 let Hibernate = new Instant(3,'Hibernate','Ice',80,[[effectCatalogue.Stun,[2]],[effectCatalogue.DestroyMana,[2]]]);
 let Indestructible = new Instant(2,'Indestructible','Steel',80,[[effectCatalogue.Indestructible,['Ward']],[effectCatalogue.Protect,['Block','DoT']]]);
-let Invoke = new Instant(3,'Invoke','Earth',75,[[effectCatalogue.RemoveCharmAll,[]],[effectCatalogue.RemoveWardAll,[]]]);
+let Revoke = new Instant(3,'Revoke','Earth',75,[[effectCatalogue.RemoveCharmAll,[]],[effectCatalogue.RemoveWardAll,[]]]);
 let Melt = new Instant(1,'Melt','Fire',75,[[effectCatalogue.RemoveProtection,[]]]);
 let Overheat = new Instant(2,'Overheat','Fire',75,[[effectCatalogue.RemoveCharmAll,[]]]);
 let Pierce = new Instant(0,'Pierce','Steel',80,[[effectCatalogue.RemoveWard,[1]]]);
+let Reclaim = new Instant(2,'Reclaim','Earth',75,[[effectCatalogue.RemoveCharm,[1]],[effectCatalogue.RemoveWard,[1]],[effectCatalogue.Stun,[1]]]);
 let Snowdrift = new Instant(1,'Snow Drift','Ice',80,[[effectCatalogue.Stat,[-2]]]);
 let Stargaze = new Instant(1,'Stargaze','Light',90,[[effectCatalogue.AddMana,[2]]]);
 let Stun = new Instant(0,'Stun','Ice',80,[[effectCatalogue.Stun,[1]]]);
@@ -133,19 +136,22 @@ export let spellCatalogue = {
         Shroud,
         // Temptation
     ],
-    // Earth: [ 
-    // //  PROS: HEALING, DAMAGE BUFF, CHARM REMOVAL, WARD REMOVAL
-    // //  CONS: LOW STUNS, LOW SECONDARY EFFECT, NO OVERTIME, NO STAT CONTROL
-    // Earthquake,
-    // EnergyTap,
-    // Invoke,
-    // Seraph,
-    // Sprite,
-    // ],
+    Earth: [ 
+    //  PROS: HEALING, DAMAGE BUFF, CHARM REMOVAL, WARD REMOVAL
+    //  CONS: LOW STUNS, LOW SECONDARY EFFECT, NO OVERTIME, NO STAT CONTROL
+    Earthquake,
+    EnergyTap,
+    Reclaim,
+    Revoke,
+    Seraph,
+    Sprite,
+    WorldOfWonder
+    ],
     Fire: [
     // PROS: DAMAGE BUFF, HIGH AOE, HEALING, CHARM REMOVAL [HIGH OVERTIME]
     // CONS: LOW HEALTH, NO WARD REMOVAL, NO DAMAGE REDUCTION, NO STUNS
         EnergyHelix,
+        Explosion,
         // Firecracker,
         Flamethrower,
         Frenzy,
@@ -170,14 +176,14 @@ export let spellCatalogue = {
         Blizzard,
         BrainFreeze,
         // Cooldown,
-        Entomb,
+        // Entomb,
         Empower,
         Freeze,
         Frostbite,
         Hibernate,
         Iceberg,
         Juggernaut,
-        // Snowdrift,
+        Snowdrift,
         // Stun,
         // StunBlock,
         Weakness
@@ -225,7 +231,7 @@ export let spellCatalogue = {
 
     checkCatalogue(element=null,data=false,random=null) {
 
-        let [total,catalogue,filter] = [0,Object.entries(this).splice(0,5),[]];
+        let [total,catalogue,filter] = [0,Object.entries(this).splice(0,6),[]];
     
         if (element) {
             
@@ -256,7 +262,7 @@ export let spellCatalogue = {
     
     },
 
-    findSpell(name) {
+    findSpell(name,id=null) {
 
         let result = [];
 
@@ -269,12 +275,14 @@ export let spellCatalogue = {
             }
 
         });
+        
+        !id ? result = result.filter(spell => { return spell.title == name })[0] : result = result.filter(spell => { return spell.id == id })
 
-        return result.filter(spell => { return spell.title == name })[0];
+        return result;
 
     },
 
-    pickRandom(n=1,element=null,catalogue=Object.entries(this).splice(0,5)) {
+    pickRandom(n=1,element=null,catalogue=Object.entries(this).splice(0,6)) {
 
         let result = []; let randomSpell; let randomSpellElement;
 

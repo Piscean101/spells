@@ -1,8 +1,10 @@
 import { effectCatalogue } from "./effect.js";
 
 export class Spell {
-
+    static _id = 0;
     constructor(cost,title,element,accuracy,effect=null,ot=0) {
+        Spell._id++;
+        this.id = Spell._id;
         this.aoe = false;
         this.cost = cost
         this.title = title;

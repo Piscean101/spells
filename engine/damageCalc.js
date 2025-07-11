@@ -102,7 +102,7 @@ export function damageCalculator(caster,target,spell) {
 
                         effectCatalogue.Heal(target,applyBuffs(e[1][1]*sacrifice,caster,target,['Heal'])[0]);
 
-                    } else if (e[0] == effectCatalogue.SelfEnchant) {
+                    } else if (e[0] == effectCatalogue.SelfEnchant || e[0] == effectCatalogue.DamageSelf) {
 
                         e[0](caster,...e[1]);
 

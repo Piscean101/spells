@@ -112,6 +112,34 @@ let DestroyMana = (target,n=1,siphon=false) => {
  
 }
 
+let DamageSelf = (target,n,ot=0) => {
+
+    let result;
+
+    n = Math.floor(n);
+
+    if (n > 0 && ot) {
+
+        result = `${target.name} is taking {${n}} damage over ${ot} rounds`;
+        target.hanging.damage.push(overTime(-n,ot,null,true));
+    
+    } else if (n <= 0) {
+
+        result = `Damage reduced to 0`;
+
+    } else {
+        
+        result = `${target.name} lost { ${n} } health`;
+
+        target.hp += n; 
+        
+        target.hp > target.maxhp ? target.hp = target.maxhp : null ;
+    }
+
+    console.log(result);
+
+}
+
 let Heal = (target,n,ot=0) => {
 
     let result;
@@ -451,6 +479,7 @@ let isProtected = (e,type) => {
 export let effectCatalogue = {
     AddMana: AddMana,
     Charm: Charm,
+    DamageSelf: DamageSelf,
     DestroyMana: DestroyMana,
     Drain: Drain,
     Heal: Heal,

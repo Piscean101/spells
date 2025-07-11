@@ -37,15 +37,23 @@ const displayCatalog = () => {
 
 }
 
-const sortCatalog = () => {
+const sortCatalog = (value='Name') => {
 
     const result = [];
 
-    catalogList.sort();
+    if (value == 'Name') {
 
-    catalogList.forEach(e => { result.push(catalog.findSpell(e))})
+        catalogList.sort();
+    
+        catalogList.forEach(e => { result.push(catalog.findSpell(e))})
+    
+        cardCatalog = result;
 
-    cardCatalog = result;
+    } else if (value == 'Cost') {
+
+        var costmap = catalogList.map(e => { result.push() })
+
+    }
 
 };
 
@@ -53,6 +61,7 @@ catalog.checkCatalogue(null,true).forEach(e => e[1].forEach(f => { cardCatalog.p
 
 sortCatalog();
 displayCatalog();
+console.log(catalog.checkCatalogue(null,true))
 
 
 console.log(cardCatalog)

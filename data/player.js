@@ -74,7 +74,7 @@ class Player {
 
 }
 
-let e = ['Fire','Ice','Dark','Light','Steel']
+let e = ['Fire','Ice','Dark','Light','Steel','Earth']
 
 let p1 = new Player(RandomName(),RandomName(e));
 let p2 = new Player(RandomName(),RandomName(e));

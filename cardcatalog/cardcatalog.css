@@ -109,7 +109,7 @@ body {
     border-color: purple;
 }
 .Earth {
-    background-image: linear-gradient(rgb(165, 73, 42), darkgreen, green, lightgreen);
+    background-image: linear-gradient(rgb(165, 73, 42), green, lightgreen, lightgreen);
     border-color: var(--neutral)
 }
 .Steel {
