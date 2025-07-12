@@ -121,7 +121,7 @@ let DamageSelf = (target,n,ot=0) => {
     if (n > 0 && ot) {
 
         result = `${target.name} is taking {${n}} damage over ${ot} rounds`;
-        target.hanging.damage.push(overTime(-n,ot,null,true));
+        target.hanging.damage.push(overTime(n,ot,null,true));
     
     } else if (n <= 0) {
 
@@ -131,7 +131,35 @@ let DamageSelf = (target,n,ot=0) => {
         
         result = `${target.name} lost { ${n} } health`;
 
-        target.hp += n; 
+        target.hp -= n; 
+        
+        target.hp > target.maxhp ? target.hp = target.maxhp : null ;
+    }
+
+    console.log(result);
+
+}
+
+let EffectDamage = (target,n,ot=0) => {
+
+    let result;
+
+    n = Math.floor(n);
+
+    if (n > 0 && ot) {
+
+        result = `${target.name} is taking {${n}} damage over ${ot} rounds`;
+        target.hanging.damage.push(overTime(n,ot,null,true));
+    
+    } else if (n <= 0) {
+
+        result = `Damage reduced to 0`;
+
+    } else {
+        
+        result = `${target.name} lost { ${n} } health`;
+
+        target.hp -= n; 
         
         target.hp > target.maxhp ? target.hp = target.maxhp : null ;
     }
@@ -374,12 +402,12 @@ let Self = (target,n,e='acc') => {
 
 }
 
-let SelfEnchant = (target,name,e='wards',type='Damage',n=0,p=false,i=false,used=false) => {
+let SelfEnchant = (target,name,e='ward',type='Damage',n=0,p=false,i=false,used=false) => {
 
     e = e.toLowerCase();
 
-    e == 'charms' ? Charm(target,name,n,type,p,i,used) :
-    e == 'wards' ? Ward(target,name,n,type,p,i,used) : 
+    e == 'charm' ? Charm(target,name,n,type,p,i,used) :
+    e == 'ward' ? Ward(target,name,n,type,p,i,used) : 
     Protect(target,name,type,p,i);
 
 }
@@ -482,6 +510,7 @@ export let effectCatalogue = {
     DamageSelf: DamageSelf,
     DestroyMana: DestroyMana,
     Drain: Drain,
+    EffectDamage: EffectDamage,
     Heal: Heal,
     Indestructible: Indestructible,
     isIndestructible: isIndestructible,

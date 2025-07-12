@@ -1,7 +1,7 @@
 import { spellCatalogue as catalog } from "../data/catalogue.js";
 
 const App = document.getElementById("catalog-app");
-var [cardCatalog,catalogList] = [[],[]];
+var [cardCatalog,catalogNameList] = [[],[]];
 
 const displayCatalog = () => {
 
@@ -37,27 +37,29 @@ const displayCatalog = () => {
 
 }
 
-const sortCatalog = (value='Name') => {
+const sortCatalog = (value='Name',order=null) => {
 
     const result = [];
 
-    if (value == 'Name') {
+    if (value == 'Name' || !value) {
 
-        catalogList.sort();
+        catalogNameList.sort();
     
-        catalogList.forEach(e => { result.push(catalog.findSpell(e))})
+        catalogNameList.forEach(e => { result.push(catalog.findSpell(e))})
     
         cardCatalog = result;
 
     } else if (value == 'Cost') {
 
-        var costmap = catalogList.map(e => { result.push() })
+        order == 'desc' ? cardCatalog.sort((a,b) => b.cost - a.cost) : cardCatalog.sort((a,b) => a.cost - b.cost);
+
+        console.log(cardCatalog)
 
     }
 
 };
 
-catalog.checkCatalogue(null,true).forEach(e => e[1].forEach(f => { cardCatalog.push(f); catalogList.push(f.title) }));
+catalog.checkCatalogue(null,true).forEach(e => e[1].forEach(f => { cardCatalog.push(f); catalogNameList.push(f.title) }));
 
 sortCatalog();
 displayCatalog();

@@ -42,6 +42,16 @@ export function damageCalculator(caster,target,spell) {
     
             }
 
+            spell.effect.forEach(e => {
+
+                if (e[0] == effectCatalogue.SelfEnchant || e[0] == effectCatalogue.DamageSelf) {
+
+                    e[0](caster,...e[1]);
+
+                }
+
+            })
+
             delete singletarget.count;
     
         } else {
@@ -102,7 +112,7 @@ export function damageCalculator(caster,target,spell) {
 
                         effectCatalogue.Heal(target,applyBuffs(e[1][1]*sacrifice,caster,target,['Heal'])[0]);
 
-                    } else if (e[0] == effectCatalogue.SelfEnchant || e[0] == effectCatalogue.DamageSelf) {
+                    } else if (e[0] == effectCatalogue.SelfEnchant && e[0] != effectCatalogue.DamageSelf) {
 
                         e[0](caster,...e[1]);
 
@@ -128,7 +138,7 @@ export function damageCalculator(caster,target,spell) {
 
                             !spell.ot ? e[0](target,healOut) : e[0](target,healOut,e[1][1]);
 
-                        } else {
+                        } else if (e[0] != effectCatalogue.DamageSelf) {
 
                             e[0](target,...e[1]);
 

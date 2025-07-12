@@ -86,7 +86,7 @@ body {
     width: 100%; 
     height: 30%;
     position: absolute; 
-    font-size: 75%;
+    font-size: 70%;
     color: var(--keyword);
     left: 0 ; 
     bottom: 0 } .card-display-effect * { position: relative; top: 5px }

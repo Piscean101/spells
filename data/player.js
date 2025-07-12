@@ -7,7 +7,7 @@ import { accuracy } from "./math.js";
 
 class Player {
     constructor(name,element,hp = 5000,mana=0) {
-        this.name = name; this.element = element; this.hp = hp; this.mana = mana; this.speed = 1; this.mates = []; this.acc = 0;
+        this.name = name; this.element = element; this.hp = hp; this.mana = mana; this.speed = 1; this.mates = []; this.acc = 0; this.defeated = false;
         this.hanging = {
             charms: [], damage: [], protection: [], stun: [], wards: []
         }
