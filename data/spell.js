@@ -11,15 +11,16 @@ export class Spell {
         this.element = element;
         this.accuracy = accuracy;
         this.effect = effect;
+        this.hostile = 0;
         this.types = [];
-        this.tool = [0,'']
+        this.tool = [0,''];
         !this.effect ? null : this.effect.forEach(e => {
             // e[0] == effectCatalogue.Drain ? console.log(e) : null;
             e[0] == effectCatalogue.Heal ? this.types.push('Heal') : 
             e[0] == effectCatalogue.Charm && !this.types.includes('Charm') ? this.types.push(`{${e[1][1]}} ${e[1][2]}-Charm`) :
             e[0] == effectCatalogue.Ward && !this.types.includes('Wards') ? this.types.push(`{${e[1][1]}} ${e[1][2]}-Ward`) : 
             !this.types.includes('Effect') ? this.types.push(e[0].name) : null;
-        })
+        });
         this.ot = ot;
     }
     
@@ -34,6 +35,7 @@ export class Attack extends Spell {
     constructor(cost,title,element,accuracy,power,effect,ot=0) {
         super(cost,title,element,accuracy,effect)
         this.power = power;
+        this.hostile++;
         this.ot = ot;
         this.ot ? this.types.unshift('OverTime') : this.types.unshift('Damage');
     }
@@ -48,7 +50,13 @@ export class AoE extends Spell {
         this.power = power;
         this.aoe = true;
         this.ot = ot;
-        this.power ? this.types.push('Damage','AoE') : this.types.push('AoE');
+        this.handleAoeType = () => {
+            if (this.power) {
+                this.types.push('Damage','AoE');
+                this.hostile++;
+            } else { this.types.push('AoE') }
+        }
+        this.handleAoeType();
     }
     
 }

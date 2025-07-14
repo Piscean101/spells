@@ -16,7 +16,7 @@ import { randomChoice } from './math.js';
 */
 
 // atk w multiple debuffs
-
+// pummel sprite earthquake revoke
 // AoE
 let BitterEnd = new AoE(5,'Bitter End','Dark',85,'Drain',[[effectCatalogue.Drain,[285,.5]],[effectCatalogue.DestroyMana,[1]]]); // Effect 0
 let BlackHole = new AoE(5,'Black Hole','Dark',80,245,[[effectCatalogue.Charm,['Miasma',-150,'Heal',true]],[effectCatalogue.Charm,['Paranoia',-1000,'Damage']]]); // LEGENDARY Effect 4
@@ -35,11 +35,11 @@ let MegatonHammer = new AoE(5,'Megaton Hammer','Steel',80,400,[[effectCatalogue.
 let Reclaim = new AoE(4,'Reclaim','Earth',75,0,[[effectCatalogue.RemoveCharmAll,[]],[effectCatalogue.RemoveWardAll,[]]]);
 let Sandstorm = new AoE(1,'Sandstorm','Earth',75,155);
 let Splendor = new AoE(3,'Splendor','Light',85,0,[[effectCatalogue.Heal,[525]]]);
-let Stampede = new AoE(4,'Stampede','Earth',100,0,[[effectCatalogue.Charm,['Stampede',500,'Damage']]]);
-let WarCry = new AoE(3,'War Cry','Fire',100,0,[[effectCatalogue.Charm,['War Cry',250,'Damage',true]],[effectCatalogue.Stat,[1]]]);
+let Stampede = new AoE(4,'Stampede','Earth',75,0,[[effectCatalogue.Charm,['Stampede',400,'Damage']]]);
+let WarCry = new AoE(3,'War Cry','Fire',75,0,[[effectCatalogue.Charm,['War Cry',250,'Damage',true]],[effectCatalogue.Stat,[1]]]);
 let Wildfire = new AoE(2,'Wildfire','Fire',70,360,null,4);
 let WitchHunt = new AoE(3,'Witch Hunt','Fire',75,275,[[effectCatalogue.RemoveProtection,['Charms']]]); // Effect 0.5
-let WorldOfWonder = new AoE(4,'World Of Wonder','Earth',100,0,[[effectCatalogue.Charm,['WoW',400,'Damage',true]]]);
+let WorldOfWonder = new AoE(4,'World Of Wonder','Earth',75,0,[[effectCatalogue.Charm,['WoW',300,'Damage',true]]]);
 // OVER-TIMES
 let BrainFreeze = new Attack(4,'Brain Freeze','Ice',75,480,[[effectCatalogue.Stun,[2]]],4); // Effect 1
 let EnergyHelix = new Heal(2,'Energy Helix','Fire',70,[[effectCatalogue.Heal,[435,3]],[effectCatalogue.Stat,[1]]],3); // Effect 0
@@ -47,15 +47,15 @@ let Flamethrower = new Attack(3,'Flamethrower','Fire',75,660,null,4);
 let HymnToTheAges = new Attack(5,'Hymn To The Ages','Light',85,0,[[effectCatalogue.Heal,[1220,5]],[effectCatalogue.Ward,['Hymn To The Ages',75,'Heal',true,true]]],5); // LEGENDARY Effect 2
 let Ignite = new Attack(1,'Ignite','Fire',75,315,null,3); 
 let Nightmare = new Attack(4,'Nightmare','Dark',80,620,null,4);
-let PhoenixSong = new Heal(4,'Phoenix Song','Fire',70,[[effectCatalogue.Heal,[710,5]],[effectCatalogue.Charm,['Fury',225,'Damage']]],5); // Effect 1
+let Phoenix = new Heal(4,'Phoenix','Fire',70,[[effectCatalogue.Heal,[710,5]],[effectCatalogue.Charm,['Fury',225,'Damage']]],5); // Effect 1
 let SolarFlare = new Attack(4,'Solar Flare','Light',90,265,[[effectCatalogue.RemoveCharmAll,[]]]); // Effect 2
-let Triage = new Heal(2,'Triage','Light',85,[[effectCatalogue.Heal,[400,5]],effectCatalogue.RemoveOT,[2,'Damage']],5); // Effect 2
+let Triage = new Heal(2,'Triage','Light',85,[[effectCatalogue.Heal,[400,5]],[effectCatalogue.RemoveOT,[2,'Damage']]],5); // Effect 2
 // ATTACKS
 let Avalanche = new Attack(5,'Avalanche','Ice',75,360,[[effectCatalogue.Stat,[-2]],[effectCatalogue.Charm,['Entomb',-300,'Damage',true]]]); // LEGENDARY Effect 4
 let Corkscrew = new Attack(1,'Corkscrew','Steel',80,110,[[effectCatalogue.Ward,['Excruciate',50,'Damage',true]]]); // Effect 1
 let CloseCombat = new Attack(4,'Close Combat','Steel',80,360,[[effectCatalogue.SelfEnchant,['Block','Protection']]]); // Effect 2
 let DarkPact = new Attack(3,'Dark Pact','Dark',80,'Drain',[[effectCatalogue.Drain,[180,.5]],[effectCatalogue.Ward,['Condemn',-250,'Heal',true]]]); // Effect 2
-let Firecracker = new Attack(2,'Firecracker','Fire',75,240,[[effectCatalogue.EffectDamage,[180,3]]]); // Effect 1
+let Firecracker = new Attack(2,'Firecracker','Fire',75,240,[[effectCatalogue.EffectDamage,['Firecracker',180,3]]]); // Effect 1
 let Frostbite = new Attack(2,'Frostbite','Ice',80,225,[[effectCatalogue.Stat,[-1]]]); // Effect 0
 let Eruption = new Attack(5,'Eruption','Earth',75,640);
 let Guillotine = new Attack(6,'Guillotine','Steel',75,845); // LEGENDARY
@@ -115,7 +115,7 @@ let Stun = new Instant(0,'Stun','Ice',80,[[effectCatalogue.Stun,[1]]]);
 let StunBlock = new Instant(1,'Stun Block','Ice',100,[[effectCatalogue.Protect,['Stun Block','Stun']],[effectCatalogue.Protect,['Stun Block','Stun']]]);
 let Temptation = new Instant(0,'Temptation','Dark',100,[[effectCatalogue.AddMana,[2]],[effectCatalogue.Stat,[-2]]]);
 
-EnergyHelix.ot = true; PhoenixSong.ot = true;
+EnergyHelix.ot = true; Phoenix.ot = true;
 
 
 export let spellCatalogue = {
@@ -166,7 +166,7 @@ export let spellCatalogue = {
         // Ignite,
         Melt,
         Overheat,
-        PhoenixSong,
+        Phoenix,
         Rage,
         // Spark,
         // Stormfront,

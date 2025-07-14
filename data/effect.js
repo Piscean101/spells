@@ -140,7 +140,7 @@ let DamageSelf = (target,n,ot=0) => {
 
 }
 
-let EffectDamage = (target,n,ot=0) => {
+let EffectDamage = (target,name,n,ot=0) => {
 
     let result;
 
@@ -149,7 +149,7 @@ let EffectDamage = (target,n,ot=0) => {
     if (n > 0 && ot) {
 
         result = `${target.name} is taking {${n}} damage over ${ot} rounds`;
-        target.hanging.damage.push(overTime(n,ot,null,true));
+        target.hanging.damage.push(overTime(n,ot,name,true));
     
     } else if (n <= 0) {
 
@@ -293,7 +293,7 @@ let RemoveCharmAll = (target) => {
 
     }
 
-    console.log(`Removed ${result} charms`);
+    console.log(`Removed ${result} charms from ${target.name}`);
 
     return charms;
 }
@@ -385,7 +385,7 @@ let RemoveWardAll = (target) => {
         
     }
 
-    console.log(`Removed ${result} wards`);
+    console.log(`Removed ${result} wards from ${target.name}`);
 
     return wards;
 }

@@ -75,7 +75,7 @@ export function checkBuffs(target,position='Out',type='Damage') {
 
 export function damageRoll(n) {
 
-    let roll = Math.floor(Math.random()*n); return roll;
+    let roll = Math.floor(Math.random()*n*5); return roll;
 
 }
 

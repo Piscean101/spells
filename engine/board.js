@@ -91,7 +91,7 @@ export class Board {
 
     endGame(result=null,winner=null) {
 
-        console.log('>>>> game over');
+        winner ? console.log(`THE WINNER IS ${winner.name}!`) : console.log(">>> game over");
         
     }
     

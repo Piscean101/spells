@@ -42,7 +42,7 @@ export function damageCalculator(caster,target,spell) {
     
             }
 
-            spell.effect.forEach(e => {
+            if (spell.effect) { spell.effect.forEach(e => {
 
                 if (e[0] == effectCatalogue.SelfEnchant || e[0] == effectCatalogue.DamageSelf) {
 
@@ -50,16 +50,16 @@ export function damageCalculator(caster,target,spell) {
 
                 }
 
-            })
+            }) }
 
             delete singletarget.count;
     
         } else {
 
-            outgoing = applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(25);
+            outgoing = applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(5);
 
-            !spell.effect ? null : spell.effect[0][1][0] ? healOut = applyBuffs(spell.effect[0][1][0],caster,target,spell.types)[0] + damageRoll(15) : 
-            applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(15);
+            !spell.effect ? null : spell.effect[0][1][0] ? healOut = applyBuffs(spell.effect[0][1][0],caster,target,spell.types)[0] + damageRoll(3) : 
+            applyBuffs(spell.power,caster,target,spell.types)[0] + damageRoll(3);
     
             outgoing < 0 ? outgoing = 0 : null;
 
